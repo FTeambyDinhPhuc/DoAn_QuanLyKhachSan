@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backgroundlogin" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginScreenController">
+   <center>
+      <VBox prefHeight="220.0" prefWidth="393.0" style="-fx-background-color: rgba(31, 51, 44, 0.9); -fx-background-radius: 10px;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="250.0" left="443.0" right="444.0" top="250.0" />
+         </BorderPane.margin>
+         <children>
+            <Label styleClass="label-mycustom" stylesheets="@../MyLibrary/Style.css" text="Tên đăng nhập" textFill="#DCFFD0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="2.0" left="13.43" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txtUser" prefHeight="32.0" prefWidth="310.0" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+               <VBox.margin>
+                  <Insets bottom="8.0" />
+               </VBox.margin></TextField>
+            <Label styleClass="label-mycustom" stylesheets="@../MyLibrary/Style.css" text="Mật khẩu">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="2.0" left="13.43" />
+               </VBox.margin>
+            </Label>
+            <PasswordField fx:id="txtPassword" prefHeight="32.0" prefWidth="310.0" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </PasswordField>
+            <Button fx:id="btnSignIn" mnemonicParsing="false" onAction="#SignIn" prefHeight="32.0" prefWidth="122.0" styleClass="buttonlogin" stylesheets="@../MyLibrary/Style.css" text="Đăng nhập">
+               <VBox.margin>
+                  <Insets left="93.0" top="27.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets left="41.0" right="42.0" top="36.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>

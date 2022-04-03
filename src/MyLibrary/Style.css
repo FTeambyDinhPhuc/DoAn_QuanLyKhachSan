@@ -1,0 +1,62 @@
+.textfield-mycustom{
+    -fx-border-width: 1px;
+    -fx-background-color: rgba(220, 255, 208, 0.8);
+    -fx-border-color: #3B6D29;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+}
+
+.label-mycustom{
+    -fx-font-weight:300;
+    -fx-font-size: 11px;
+    -fx-text-fill: rgba(220, 255, 208, 0.7);
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+}
+
+
+.labelmain{
+    -fx-font-weight:bold;
+    -fx-font-size: 36px;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+}
+
+.buttonlogin{
+    -fx-background-color: #FFE248;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-size: 14px;
+    -fx-font-weight:bold;
+    
+}
+
+.buttondashboard{
+    -fx-background-color: #98F576;
+    -fx-text-fill: #2F2F2F;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-size: 16px;
+    -fx-font-weight:bold;
+    -fx-line-height: 19px;
+    -fx-background-radius:8px;
+    -fx-graphic-text-gap: 10;
+    -fx-alignment: TOP_LEFT;
+}
+
+.backgroundlogin{
+    -fx-background-image:url('../MyLibrary/Images/loginImage.jpg');
+    -fx-background-size:cover;
+}
+
+.backgroundmain{
+    -fx-background-image:url('../MyLibrary/Images/mainImage.jpg');
+    -fx-background-size:cover;
+}

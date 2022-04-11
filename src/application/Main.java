@@ -13,7 +13,6 @@ public class Main extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/View/LoginScreen.fxml"));
 			Scene scene = new Scene(root);
-
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			primaryStage.setResizable(false);
@@ -21,10 +20,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-
 	public static void main(String[] args) {
 		launch(args);
-		ConnectSql connect = new ConnectSql();
-		connect.Connect();
 	}
 }

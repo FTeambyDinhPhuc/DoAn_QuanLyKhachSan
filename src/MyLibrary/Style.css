@@ -10,16 +10,40 @@
     -fx-border-radius: 16px;
 }
 
-.label-mycustom{
-    -fx-font-weight:300;
-    -fx-font-size: 11px;
-    -fx-text-fill: rgba(220, 255, 208, 0.7);
+.datepicker-mycustom{
+    -fx-background-color:  rgba(152, 245, 118, 1);
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-weight: bold;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.labelmain{
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(152, 245, 118, 1);
     -fx-font-family: 'Roboto';
     -fx-font-style: normal;
 }
 
+.labelmedium{
+    -fx-text-fill: rgba(220, 255, 208, 0.8);
+    -fx-font-weight: bold;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-size: 14px;
+}
 
-.labelmain{
+.labelsmall{
+    -fx-text-fill: rgba(220, 255, 208, 0.8);
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-size: 11px;
+}
+
+.labelwhite{
     -fx-font-weight:bold;
     -fx-font-size: 36px;
     -fx-text-fill: #FFFFFF;
@@ -33,9 +57,27 @@
     -fx-border-radius: 16px;
     -fx-font-family: 'Roboto';
     -fx-font-style: normal;
-    -fx-font-size: 14px;
     -fx-font-weight:bold;
-    
+    -fx-font-size: 14px;
+}
+
+.buttonmain{
+    -fx-background-color: #FFE248;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-weight:bold;
+    -fx-font-size: 24px;
+}
+
+.buttonclean{
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-weight:bold;
+    -fx-font-size: 14px;
 }
 
 .buttondashboard{
@@ -59,4 +101,41 @@
 .backgroundmain{
     -fx-background-image:url('../MyLibrary/Images/mainImage.jpg');
     -fx-background-size:cover;
+}
+
+.shadow{
+    -fx-effect: dropshadow( three-pass-box , rgba(68,85,90) , 5, 0.0 , 0.0 , 0 );
+}
+
+.scroll-pane {
+    -fx-background-color: #02030A;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #98F576
+    ;
+    -fx-background-radius: 5em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: #3B6D29
+    ;
+    ;
 }

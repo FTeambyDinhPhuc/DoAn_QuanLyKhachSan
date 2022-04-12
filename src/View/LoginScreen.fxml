@@ -16,7 +16,7 @@
             <Insets bottom="250.0" left="443.0" right="444.0" top="250.0" />
          </BorderPane.margin>
          <children>
-            <Label styleClass="label-mycustom" stylesheets="@../MyLibrary/Style.css" text="Tên đăng nhập" textFill="#DCFFD0">
+            <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Tên đăng nhập" textFill="#DCFFD0">
                <font>
                   <Font size="11.0" />
                </font>
@@ -28,7 +28,7 @@
                <VBox.margin>
                   <Insets bottom="8.0" />
                </VBox.margin></TextField>
-            <Label styleClass="label-mycustom" stylesheets="@../MyLibrary/Style.css" text="Mật khẩu">
+            <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Mật khẩu">
                <font>
                   <Font size="11.0" />
                </font>
@@ -45,6 +45,9 @@
                <VBox.margin>
                   <Insets left="93.0" top="27.0" />
                </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Button>
          </children>
          <padding>

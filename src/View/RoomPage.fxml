@@ -161,6 +161,11 @@
                </children></HBox>
             <VBox alignment="BOTTOM_CENTER" prefHeight="344.0" prefWidth="265.0">
                <children>
+                  <Button fx:id="btnService" mnemonicParsing="false" onAction="#OnServiceScreen" prefHeight="32.0" prefWidth="118.03" styleClass="buttonlogin" stylesheets="@../MyLibrary/Style.css" text="Dịch vụ phòng">
+                     <VBox.margin>
+                        <Insets bottom="220.0" right="135.0" />
+                     </VBox.margin>
+                  </Button>
                   <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="262.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Đặt phòng">
                      <font>
                         <Font size="24.0" />

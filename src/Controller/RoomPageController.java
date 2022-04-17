@@ -1,21 +1,26 @@
 package Controller;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import Model.Room;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class RoomPageController implements Initializable {
 	@FXML
@@ -26,6 +31,8 @@ public class RoomPageController implements Initializable {
     private GridPane gridVipRoom;
     @FXML
     private GridPane gridNormalRoom;
+    @FXML
+    private Button btnService;
 	
 	private List<Room> rooms = new ArrayList<>();
 
@@ -71,4 +78,20 @@ public class RoomPageController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	private Stage stage;
+	private Scene scene;
+	private Parent root;
+
+	// Event Listener on Button[#btnSignIn].onAction
+	@FXML
+	public void OnServiceScreen(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("/View/ServiceScreen.fxml"));
+		stage = new Stage();
+		stage.initStyle(StageStyle.UNDECORATED);
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="96.0" prefWidth="355.0" style="-fx-background-color: #1F332C; -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ItemController">
+   <left>
+      <BorderPane fx:id="bpRoom" prefHeight="96.0" prefWidth="96.0" style="-fx-background-color: #98F576; -fx-background-radius: 15;" BorderPane.alignment="CENTER">
+         <center>
+            <Label fx:id="lbNumberRoom" styleClass="labelmainblack" stylesheets="@../MyLibrary/Style.css" text="101" BorderPane.alignment="CENTER" />
+         </center></BorderPane>
+   </left>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <Label fx:id="lbStatusRoom" styleClass="labelmain" stylesheets="@../MyLibrary/Style.css" text="Trống" BorderPane.alignment="CENTER" />
+         </center></BorderPane>
+   </center>
+</BorderPane>

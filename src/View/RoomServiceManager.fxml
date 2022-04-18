@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fillWidth="false" prefWidth="784.0">
+         <children>
+            <HBox>
+               <children>
+                  <Label styleClass="labeltitle" stylesheets="@../MyLibrary/Style.css" text="Quản lý ">
+                     <HBox.margin>
+                        <Insets bottom="18.0" left="30.0" top="28.0" />
+                     </HBox.margin>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <Label styleClass="labeltitle" stylesheets="@../MyLibrary/Style.css" text="Dịch vụ">
+                           <HBox.margin>
+                              <Insets bottom="18.0" top="28.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="labelblur" stylesheets="@../MyLibrary/Style.css" text="Phòng">
+                           <HBox.margin>
+                              <Insets bottom="18.0" top="28.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+            <TextField prefHeight="42.0" prefWidth="368.0" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+               <VBox.margin>
+                  <Insets bottom="31.0" />
+               </VBox.margin>
+            </TextField>
+            <TableView opacity="0.9" prefHeight="523.0" prefWidth="731.0">
+               <columns>
+                  <TableColumn maxWidth="271.0" prefWidth="212.0" text="Tên dịch vụ" />
+                  <TableColumn maxWidth="384.0" prefWidth="171.0" text="Đơn giá" />
+               </columns>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TableView>
+         </children>
+      </VBox>
+      <VBox prefWidth="286.0" style="-fx-background-color: #0B150F;;">
+         <children>
+            <HBox prefHeight="56.0" prefWidth="286.0">
+               <children>
+                  <Label styleClass="labelname" stylesheets="@../MyLibrary/Style.css" text="Dịch vụ">
+                     <HBox.margin>
+                        <Insets left="107.0" top="14.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox prefHeight="283.0" prefWidth="278.0">
+               <children>
+                  <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Tên dịch vụ">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="27.0" top="12.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                     <VBox.margin>
+                        <Insets left="16.0" right="16.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Đơn giá">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="27.0" top="12.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                     <VBox.margin>
+                        <Insets left="16.0" right="16.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox prefHeight="68.0" prefWidth="278.0" />
+               </children>
+            </VBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Chỉnh sửa">
+                     <HBox.margin>
+                        <Insets bottom="45.0" left="12.0" right="12.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: DCFFD0;" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css">
+                     <graphic>
+                        <ImageView fitHeight="43.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../MyLibrary/Icons/iconTrash.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="294.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets left="16.0" />
+   </padding>
+</HBox>

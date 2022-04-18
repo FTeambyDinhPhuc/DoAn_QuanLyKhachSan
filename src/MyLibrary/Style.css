@@ -75,6 +75,31 @@
     -fx-font-family: 'Roboto';
     -fx-font-style: normal;
 }
+.labeltitle{
+    -fx-font-weight:700;
+    -fx-font-size: 36px;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-widht:120px;
+    -fx-heidht:42px;
+}
+.labelblur{
+    -fx-font-weight: 400;
+    -fx-font-size: 36px;
+    -fx-text-fill: #7A7A7A;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+}
+.labelname{
+    -fx-font-weight: 400;
+    -fx-text-fill: rgba(152, 245, 118, 1);
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-size: 24px;
+    -fx-widht:79px;
+    -fx-heidht:28px;
+}
 
 .labelmediumwhite{
     -fx-font-weight:bold;

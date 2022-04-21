@@ -26,6 +26,31 @@
     -fx-text-fill: rgba(152, 245, 118, 1);
     -fx-font-family: 'Roboto';
     -fx-font-style: normal;
+    -fx-font-size: 24px;
+}
+
+.labelmainblack{
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(47, 47, 47, 1);
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-size: 24px;
+}
+
+.labelmainmedium{
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(152, 245, 118, 1);
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-size: 14px;
+}
+
+.labelmainbig{
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(152, 245, 118, 1);
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-size: 20px;
 }
 
 .labelmedium{
@@ -51,6 +76,22 @@
     -fx-font-style: normal;
 }
 
+.labelmediumwhite{
+    -fx-font-weight:bold;
+    -fx-font-size: 20px;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+}
+
+.labelsmallwhite{
+    -fx-font-weight:bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+}
+
 .buttonlogin{
     -fx-background-color: #FFE248;
     -fx-background-radius: 16px;
@@ -68,7 +109,7 @@
     -fx-font-family: 'Roboto';
     -fx-font-style: normal;
     -fx-font-weight:bold;
-    -fx-font-size: 24px;
+    -fx-font-size: 20px;
 }
 
 .buttonclean{
@@ -129,13 +170,34 @@
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color: #98F576
-    ;
+    -fx-background-color: #98F576;
     -fx-background-radius: 5em;
 }
 
 .scroll-pane > .corner {
-    -fx-background-color: #3B6D29
-    ;
-    ;
+    -fx-background-color: #3B6D29;
+}
+
+.table-view{
+    -fx-background-color: rgba(11, 21, 15, 1);
+    -fx-background-radius: 30;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: rgba(59, 109, 41, 1);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0 0 10 0;
+    -fx-padding: 0 0 10 0;
+    -fx-effect: dropshadow(two-pass-box, rgba(68,85,90) , 5, 0.0 , 0.0 , 0 );
+}
+
+.table-view .column-header, .table-view .filler{
+    -fx-size: 40;
+    -fx-border-width: 0 0 10 0;
+    -fx-background-color: transparent;
+}
+
+
+.table-view .column-header .label{
+    -fx-text-fill:white;
 }

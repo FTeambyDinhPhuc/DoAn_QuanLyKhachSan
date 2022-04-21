@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="660.0" style="-fx-background-color: #1F332C;" styleClass="shadow" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox prefWidth="612.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefWidth="200.0">
+               <children>
+                  <Label styleClass="labelmediumwhite" stylesheets="@../MyLibrary/Style.css" text=" Phòng " />
+                  <Label styleClass="labelmediumwhite" stylesheets="@../MyLibrary/Style.css" text="101" />
+                  <Label styleClass="labelmediumwhite" stylesheets="@../MyLibrary/Style.css" text=" - Thanh toán" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="33.0" top="16.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox fillHeight="false">
+               <children>
+                  <VBox fillWidth="false">
+                     <children>
+                        <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Tên khách hàng">
+                           <VBox.margin>
+                              <Insets left="12.82" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField prefHeight="32.0" prefWidth="296.0" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" right="20.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox fillWidth="false">
+                     <children>
+                        <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="SĐT">
+                           <VBox.margin>
+                              <Insets left="12.82" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField prefHeight="32.0" prefWidth="296.0" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox fillHeight="false">
+               <children>
+                  <VBox fillWidth="false">
+                     <children>
+                        <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="CCCD">
+                           <VBox.margin>
+                              <Insets left="12.82" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField prefHeight="32.0" prefWidth="296.0" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox fillWidth="false">
+                     <children>
+                        <HBox fillHeight="false">
+                           <children>
+                              <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Ngày nhận phòng">
+                                 <HBox.margin>
+                                    <Insets left="12.82" right="80.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <DatePicker prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #98F576;" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="12.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fillHeight="false">
+                           <children>
+                              <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Ngày trả phòng">
+                                 <HBox.margin>
+                                    <Insets left="12.82" right="90.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <DatePicker prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #98F576;" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="12.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" fillHeight="false" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER_LEFT" fillWidth="false">
+               <children>
+                  <Label styleClass="labelsmallwhite" stylesheets="@../MyLibrary/Style.css" text="Thành tiền" />
+                  <Label styleClass="labelmainbig" stylesheets="@../MyLibrary/Style.css" text="79.000vnđ" />
+               </children>
+            </VBox>
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Xác nhận">
+               <HBox.margin>
+                  <Insets left="62.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="19.0" top="13.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <padding>
+      <Insets left="24.0" right="24.0" />
+   </padding>
+   <center>
+      <TableView prefHeight="384.0" prefWidth="612.0" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn prefWidth="324.0" text="Tên dịch vụ" />
+            <TableColumn minWidth="0.0" prefWidth="101.0" text="Số lượng" />
+            <TableColumn minWidth="0.0" prefWidth="71.0" text="Thành tiền" />
+         </columns>
+      </TableView>
+   </center>
+</BorderPane>

@@ -7,16 +7,18 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomPageController">
    <children>
       <VBox prefWidth="784.0">
          <children>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane prefHeight="190.0" prefWidth="200.0">
                <top>
                   <Label styleClass="labelwhite" stylesheets="@../MyLibrary/Style.css" text="Sơ đồ phòng" BorderPane.alignment="TOP_LEFT">
                      <BorderPane.margin>
@@ -47,7 +49,7 @@
             <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                <children>
                   <Pane maxHeight="-Infinity" prefHeight="2.0" prefWidth="39.0" style="-fx-background-color: #98F576;" />
-                  <Label styleClass="labelmain" stylesheets="@../MyLibrary/Style.css" text="VIP">
+                  <Label styleClass="labelmainmedium" stylesheets="@../MyLibrary/Style.css" text="VIP">
                      <HBox.margin>
                         <Insets left="18.0" right="21.0" />
                      </HBox.margin></Label>
@@ -57,30 +59,41 @@
                   <Insets bottom="7.0" top="17.0" />
                </VBox.margin>
             </HBox>
-            <ScrollPane prefHeight="222.0" prefWidth="710.0" style="-fx-background-color: transparent;" stylesheets="@../MyLibrary/Style.css">
+            <ScrollPane fx:id="scrollVipRoom" prefHeight="219.0" prefWidth="750.0" style="-fx-background-color: transparent;" stylesheets="@../MyLibrary/Style.css">
                <content>
-                  <HBox prefHeight="220.0" prefWidth="750.0" style="-fx-background-color: #DCFFD0;" />
+                  <GridPane fx:id="gridVipRoom" style="-fx-background-color: #DCFFD0;">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
                </content>
             </ScrollPane>
             <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                <children>
                   <Pane maxHeight="-Infinity" prefHeight="2.0" prefWidth="39.0" style="-fx-background-color: #98F576;" />
-                  <Label styleClass="labelmain" stylesheets="@../MyLibrary/Style.css" text="VIP">
+                  <Label prefHeight="18.0" prefWidth="65.0" styleClass="labelmainmedium" stylesheets="@../MyLibrary/Style.css" text="Thường">
                      <HBox.margin>
                         <Insets left="18.0" right="21.0" />
                      </HBox.margin>
                   </Label>
                   <Pane maxHeight="-Infinity" prefHeight="2.0" prefWidth="652.0" style="-fx-background-color: #98F576;" />
                </children>
+               <VBox.margin>
+                  <Insets bottom="7.0" right="16.0" top="13.0" />
+               </VBox.margin>
             </HBox>
-            <ScrollPane style="-fx-background-color: transparent;">
+            <ScrollPane fx:id="scrollNormalRoom" prefHeight="219.0" prefWidth="750.0" style="-fx-background-color: transparent;">
                <content>
-                  <HBox prefHeight="220.0" prefWidth="750.0" style="-fx-background-color: #DCFFD0;" />
+                  <GridPane fx:id="gridNormalRoom" style="-fx-background-color: #DCFFD0;">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
                </content>
             </ScrollPane>
          </children>
          <padding>
-            <Insets left="16.0" right="16.0" />
+            <Insets left="16.0" />
          </padding></VBox>
       <VBox prefWidth="286.0" style="-fx-background-color: rgba(11, 21, 15, 1);">
          <children>
@@ -148,6 +161,11 @@
                </children></HBox>
             <VBox alignment="BOTTOM_CENTER" prefHeight="344.0" prefWidth="265.0">
                <children>
+                  <Button fx:id="btnService" mnemonicParsing="false" onAction="#OnServiceScreen" prefHeight="32.0" prefWidth="118.03" styleClass="buttonlogin" stylesheets="@../MyLibrary/Style.css" text="Dịch vụ phòng">
+                     <VBox.margin>
+                        <Insets bottom="220.0" right="135.0" />
+                     </VBox.margin>
+                  </Button>
                   <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="262.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Đặt phòng">
                      <font>
                         <Font size="24.0" />

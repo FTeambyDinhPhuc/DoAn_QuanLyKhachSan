@@ -11,26 +11,25 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomerPageController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ServiceManagePageController">
    <children>
       <VBox fillWidth="false" prefWidth="784.0">
          <children>
-            <Label styleClass="labelwhite" stylesheets="@../MyLibrary/Style.css" text="Khách hàng">
+            <Label styleClass="labelwhite" stylesheets="@../MyLibrary/Style.css" text="Quản lý dịch vụ">
                <VBox.margin>
-                  <Insets bottom="21.0" left="14.0" top="32.0" />
+                  <Insets bottom="18.0" left="14.0" top="28.0" />
                </VBox.margin>
             </Label>
-            <TextField prefHeight="42.0" prefWidth="368.0" promptText="Nguyễn Văn A" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+            <TextField prefHeight="42.0" prefWidth="368.0" promptText="Tìm kiếm dịch vụ" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                <VBox.margin>
                   <Insets bottom="31.0" />
                </VBox.margin>
             </TextField>
             <TableView opacity="0.9" prefHeight="523.0" prefWidth="731.0">
-              <columns>
-                <TableColumn prefWidth="169.0" text="Họ tên" />
-                <TableColumn prefWidth="265.0" text="CCCD" />
-                  <TableColumn prefWidth="297.0" text="SĐT" />
-              </columns>
+               <columns>
+                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="438.6" text="Tên dịch vụ" />
+                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="292.4" text="Đơn giá" />
+               </columns>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -40,44 +39,36 @@
             <Insets left="16.0" />
          </padding>
       </VBox>
-      <VBox prefWidth="286.0" style="-fx-background-color: #0B150F;;">
+      <VBox alignment="TOP_CENTER" prefWidth="286.0" style="-fx-background-color: #0B150F;;">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: rgba(68,85,90,0.2); -fx-border-width: 2px 0px 0px 0px;">
+            <Label styleClass="labelmain" stylesheets="@../MyLibrary/Style.css" text="Dịch vụ">
+               <VBox.margin>
+                  <Insets bottom="14.0" top="14.0" />
+               </VBox.margin>
+            </Label>
+            <VBox style="-fx-border-color: rgba(68,85,90,0.2); -fx-border-width: 2px 0px 0px 0px;">
                <children>
-                  <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Tên khách hàng">
+                  <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Tên dịch vụ">
                      <VBox.margin>
                         <Insets bottom="2.0" left="27.0" top="12.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField prefHeight="47.0" prefWidth="254.0" promptText="Tên khách hàng" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                  <TextField promptText="Tên dịch vụ" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                      <VBox.margin>
                         <Insets left="16.0" right="16.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="CCCD">
+                  <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Đơn giá">
                      <VBox.margin>
                         <Insets bottom="2.0" left="27.0" top="12.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField prefHeight="47.0" prefWidth="254.0" promptText="CCCD" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
-                     <VBox.margin>
-                        <Insets left="16.0" right="16.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Số diện thoại">
-                     <VBox.margin>
-                        <Insets bottom="2.0" left="27.0" top="12.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField prefHeight="47.0" prefWidth="254.0" promptText="SĐT" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                  <TextField promptText="40" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                      <VBox.margin>
                         <Insets left="16.0" right="16.0" />
                      </VBox.margin>
                   </TextField>
                </children>
-               <VBox.margin>
-                  <Insets top="56.0" />
-               </VBox.margin>
             </VBox>
             <HBox fillHeight="false">
                <children>
@@ -93,10 +84,11 @@
                               <Image url="@../MyLibrary/Icons/iconBin.png" />
                            </image>
                         </ImageView>
-                     </graphic></Button>
+                     </graphic>
+                  </Button>
                </children>
                <VBox.margin>
-                  <Insets top="394.0" />
+                  <Insets top="453.0" />
                </VBox.margin>
                <padding>
                   <Insets left="12.0" right="12.0" />

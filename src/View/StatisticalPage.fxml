@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -22,7 +23,11 @@
                </VBox.margin></Label>
             <HBox>
                <children>
-                  <TextField prefHeight="42.0" prefWidth="368.0" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css" />
+                  <TextField prefHeight="42.0" prefWidth="252.0" promptText="Nguyễn Văn A" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                     <HBox.margin>
+                        <Insets right="16.0" />
+                     </HBox.margin></TextField>
+                  <DatePicker prefHeight="42.0" prefWidth="100.0" promptText="07/20/2022" style="-fx-background-color: #98F576;" />
                   <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">

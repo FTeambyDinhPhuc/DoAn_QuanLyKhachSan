@@ -59,7 +59,7 @@
                   <Insets bottom="7.0" top="17.0" />
                </VBox.margin>
             </HBox>
-            <ScrollPane fx:id="scrollVipRoom" prefHeight="219.0" prefWidth="750.0" style="-fx-background-color: transparent;" stylesheets="@../MyLibrary/Style.css">
+            <ScrollPane fx:id="scrollVipRoom" opacity="0.9" prefHeight="219.0" prefWidth="750.0" style="-fx-background-color: transparent;" stylesheets="@../MyLibrary/Style.css">
                <content>
                   <GridPane fx:id="gridVipRoom" style="-fx-background-color: #DCFFD0;">
                     <rowConstraints>
@@ -71,7 +71,7 @@
             <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                <children>
                   <Pane maxHeight="-Infinity" prefHeight="2.0" prefWidth="39.0" style="-fx-background-color: #98F576;" />
-                  <Label prefHeight="18.0" prefWidth="65.0" styleClass="labelmainmedium" stylesheets="@../MyLibrary/Style.css" text="Thường">
+                  <Label prefHeight="18.0" prefWidth="70.0" styleClass="labelmainmedium" stylesheets="@../MyLibrary/Style.css" text="Thường">
                      <HBox.margin>
                         <Insets left="18.0" right="21.0" />
                      </HBox.margin>
@@ -82,7 +82,7 @@
                   <Insets bottom="7.0" right="16.0" top="13.0" />
                </VBox.margin>
             </HBox>
-            <ScrollPane fx:id="scrollNormalRoom" prefHeight="219.0" prefWidth="750.0" style="-fx-background-color: transparent;">
+            <ScrollPane fx:id="scrollNormalRoom" opacity="0.9" prefHeight="219.0" prefWidth="750.0" style="-fx-background-color: transparent;">
                <content>
                   <GridPane fx:id="gridNormalRoom" style="-fx-background-color: #DCFFD0;">
                     <rowConstraints>
@@ -107,7 +107,7 @@
                   <Insets bottom="2.0" left="11.0" top="12.0" />
                </VBox.margin>
             </Label>
-            <TextField prefHeight="32.0" prefWidth="254.0" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css" />
+            <TextField prefHeight="32.0" prefWidth="254.0" promptText="CCCD" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css" />
             <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Tên khách hàng">
                <padding>
                   <Insets left="11.0" />
@@ -116,7 +116,7 @@
                   <Insets bottom="2.0" top="12.0" />
                </VBox.margin>
             </Label>
-            <TextField styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css" />
+            <TextField promptText="Tên khách hàng" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css" />
             <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="SĐT">
                <padding>
                   <Insets left="11.0" />
@@ -125,7 +125,7 @@
                   <Insets bottom="2.0" top="12.0" />
                </VBox.margin>
             </Label>
-            <TextField styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css" />
+            <TextField promptText="SĐT" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css" />
             <HBox prefHeight="28.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="16.0" top="16.0" />
@@ -135,7 +135,7 @@
                      <HBox.margin>
                         <Insets right="45.0" />
                      </HBox.margin></Label>
-                  <DatePicker prefWidth="110.0" style="-fx-background-color: #98F576;" />
+                  <DatePicker prefWidth="110.0" promptText="07/28/2022" style="-fx-background-color: #98F576;" />
                </children>
             </HBox>
             <HBox prefHeight="28.0" prefWidth="200.0">
@@ -147,7 +147,7 @@
                      <HBox.margin>
                         <Insets right="55.0" />
                      </HBox.margin></Label>
-                  <DatePicker prefWidth="110.0" style="-fx-background-color: #98F576;" />
+                  <DatePicker prefWidth="110.0" promptText="07/30/2022" style="-fx-background-color: #98F576;" />
                </children>
             </HBox>
             <HBox prefHeight="28.0" prefWidth="200.0">
@@ -163,15 +163,33 @@
                <children>
                   <Button fx:id="btnService" mnemonicParsing="false" onAction="#OnServiceScreen" prefHeight="32.0" prefWidth="118.03" styleClass="buttonlogin" stylesheets="@../MyLibrary/Style.css" text="Dịch vụ phòng">
                      <VBox.margin>
-                        <Insets bottom="220.0" right="135.0" />
+                        <Insets bottom="60.0" right="135.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="262.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Đặt phòng">
+                  <Button fx:id="btnBookRoom" mnemonicParsing="false" onAction="#BookRoom" prefHeight="48.0" prefWidth="262.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Đặt phòng">
                      <font>
                         <Font size="24.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="45.0" />
+                        <Insets bottom="16.0" />
+                     </VBox.margin>
+                  </Button>
+                  <HBox fillHeight="false">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="119.0" styleClass="buttontransparent" stylesheets="@../MyLibrary/Style.css" text="Hủy">
+                           <HBox.margin>
+                              <Insets right="16.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="119.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Nhận" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="btnPayment" mnemonicParsing="false" onAction="#Payment" prefHeight="48.0" prefWidth="262.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Thanh toán">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="45.0" top="48.0" />
                      </VBox.margin>
                   </Button>
                </children>

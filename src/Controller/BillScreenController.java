@@ -1,8 +1,5 @@
 package Controller;
 
-import java.io.IOException;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,16 +9,21 @@ import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ServiceScreenController {
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
+
+public class BillScreenController {
 	@FXML
 	private Button btnConfirm;
 	@FXML
 	private Button btnClose;
-
-	Stage stage;
 	
+	Stage stage;
+
+	// Event Listener on Button[#btnConfirm].onAction
 	@FXML
-	public void Confirm(ActionEvent event) throws IOException {
+	public void Confirm(ActionEvent event)throws IOException {
 		FXMLLoader fxmlloader = new FXMLLoader();
 		fxmlloader.setLocation(getClass().getResource("/View/SuccessfulConfirmation.fxml"));
 		DialogPane successfulConfirmationDialog = fxmlloader.load();
@@ -33,7 +35,7 @@ public class ServiceScreenController {
 		stage.close();
 	}
 	
-	@FXML
+	 @FXML
 	 public void Close(ActionEvent event) {
 		 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		 stage.close();

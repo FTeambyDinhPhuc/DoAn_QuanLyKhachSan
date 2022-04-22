@@ -22,8 +22,10 @@ public class MainScreenController {
 	private Button btnStatisticalPage;
 	@FXML
 	private Button btnCustomerPage;
-	@FXML
-	private Button btnManagePage;
+    @FXML
+    private Button btnRoomManagePage;
+    @FXML
+    private Button btnServiceManagePage;
 	@FXML
 	private AnchorPane ap;
 
@@ -43,10 +45,14 @@ public class MainScreenController {
 		LoadPage("CustomerPage");
 	}
 	// Event Listener on Button[#btnManagePage].onAction
-	@FXML
-	public void ManagePage(ActionEvent event) {
-		LoadPage("ManagePage");
-	}
+    @FXML
+    void RoomManagePage(ActionEvent event) {
+    	LoadPage("RoomManagePage");
+    }
+    @FXML
+    void ServiceManagePage(ActionEvent event) {
+    	LoadPage("ServiceManagePage");
+    }
 	
 	private void LoadPage (String page) {
 		Parent root = null;

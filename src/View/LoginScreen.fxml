@@ -24,7 +24,7 @@
                   <Insets bottom="2.0" left="13.43" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="txtUser" prefHeight="32.0" prefWidth="310.0" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+            <TextField fx:id="txtUser" prefHeight="32.0" prefWidth="310.0" promptText="Tên đăng nhập" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                <VBox.margin>
                   <Insets bottom="8.0" />
                </VBox.margin></TextField>
@@ -36,7 +36,7 @@
                   <Insets bottom="2.0" left="13.43" />
                </VBox.margin>
             </Label>
-            <PasswordField fx:id="txtPassword" prefHeight="32.0" prefWidth="310.0" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+            <PasswordField fx:id="txtPassword" prefHeight="32.0" prefWidth="310.0" promptText="********" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

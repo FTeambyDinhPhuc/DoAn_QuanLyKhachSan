@@ -6,6 +6,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -14,11 +16,23 @@
    <top>
       <VBox prefWidth="612.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                <children>
                   <Label styleClass="labelmediumwhite" stylesheets="@../MyLibrary/Style.css" text=" Phòng " />
                   <Label styleClass="labelmediumwhite" stylesheets="@../MyLibrary/Style.css" text="101" />
                   <Label styleClass="labelmediumwhite" stylesheets="@../MyLibrary/Style.css" text=" - Dịch vụ phòng" />
+                  <Button fx:id="btnClose" mnemonicParsing="false" onAction="#Close" styleClass="buttonimage" stylesheets="@../MyLibrary/Style.css">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../MyLibrary/Icons/iconClose.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="295.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" top="16.0" />
@@ -26,7 +40,7 @@
             </HBox>
             <HBox prefWidth="612.0">
                <children>
-                  <TextField prefHeight="24.0" prefWidth="224.0" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css" />
+                  <TextField prefHeight="24.0" prefWidth="224.0" promptText="Tìm kiếm dịch vụ" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" />

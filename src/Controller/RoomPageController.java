@@ -16,6 +16,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -33,6 +36,10 @@ public class RoomPageController implements Initializable {
     private GridPane gridNormalRoom;
     @FXML
     private Button btnService;
+    @FXML
+    private Button btnPayment;
+    @FXML
+    private Button btnBookRoom;
 	
 	private List<Room> rooms = new ArrayList<>();
 
@@ -79,19 +86,40 @@ public class RoomPageController implements Initializable {
 		}
 	}
 	
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
 
 	// Event Listener on Button[#btnSignIn].onAction
 	@FXML
 	public void OnServiceScreen(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/ServiceScreen.fxml"));
-		stage = new Stage();
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.UNDECORATED);
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+		
+	}
+
+
+	@FXML
+	public void Payment(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("/View/BillScreen.fxml"));
+		Stage stage = new Stage();
 		stage.initStyle(StageStyle.UNDECORATED);
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	@FXML
+	public void BookRoom(ActionEvent event) throws IOException{
+		FXMLLoader fxmlloader = new FXMLLoader();
+		fxmlloader.setLocation(getClass().getResource("/View/ErrorLeftBlank.fxml"));
+		DialogPane errorLeftBlankDialog = fxmlloader.load();
+		Dialog<Void> dialog = new Dialog<>();
+		dialog.setDialogPane(errorLeftBlankDialog);
+		dialog.initStyle(StageStyle.UNDECORATED);
+		dialog.showAndWait();
+	}
+	
 
 }

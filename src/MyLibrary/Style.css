@@ -112,6 +112,35 @@
     -fx-font-size: 20px;
 }
 
+.buttonwhite{
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #2F2F2F;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-weight:bold;
+    -fx-font-size: 20px;
+}
+
+.buttontransparent{
+    -fx-background-color: transparent;
+    -fx-border-color:#3B6D29;
+    -fx-text-fill: #EDEDED;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-font-family: 'Roboto';
+    -fx-font-style: normal;
+    -fx-font-weight:bold;
+    -fx-font-size: 20px;
+}
+
+.buttonimage{
+    -fx-background-color: transparent;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+}
+
 .buttonclean{
     -fx-background-radius: 16px;
     -fx-border-radius: 16px;
@@ -142,6 +171,11 @@
 .backgroundmain{
     -fx-background-image:url('../MyLibrary/Images/mainImage.jpg');
     -fx-background-size:cover;
+}
+
+.backgrounddialog{
+    -fx-background-color:#1F332C;
+    -fx-effect: dropshadow( three-pass-box , rgba(68,85,90) , 5, 0.0 , 0.0 , 0 );
 }
 
 .shadow{

@@ -6,6 +6,9 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 
 public class DialogController {
@@ -18,9 +21,8 @@ public class DialogController {
 	@FXML
 	private Button btnNoDL;
 	
-	
 	Stage stage;
-
+	public boolean chu;
 	// Event Listener on Button[#btnOki].onAction
 	@FXML
 	public void Oki(ActionEvent event) {
@@ -30,15 +32,17 @@ public class DialogController {
 	
 	@FXML
     public void NoDL(ActionEvent event) {
-		System.out.print("Nhan khong thi thoi");
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		stage.close();
+		chu=false;
+		Stage st;
+		st = (Stage)((Node)event.getSource()).getScene().getWindow();	
+		st.close();
     }
 
     @FXML
     public void YesDL(ActionEvent event) {
-    	System.out.print("Nhan co thi lam gi di");
+    	chu=true;
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		stage.close();
+    	stage.close();	
     }
+    
 }

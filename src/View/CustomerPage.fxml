@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomerPageController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomerPageController">
    <children>
       <VBox fillWidth="false" prefWidth="784.0">
          <children>
@@ -25,11 +25,12 @@
                   <Insets bottom="31.0" />
                </VBox.margin>
             </TextField>
-            <TableView opacity="0.9" prefHeight="523.0" prefWidth="731.0">
+            <TableView fx:id="tableCustomers" onMouseClicked="#rowClick" opacity="0.9" prefHeight="523.0" prefWidth="731.0">
               <columns>
-                <TableColumn prefWidth="169.0" text="Họ tên" />
-                <TableColumn prefWidth="265.0" text="CCCD" />
-                  <TableColumn prefWidth="297.0" text="SĐT" />
+                <TableColumn fx:id="sttColumn" prefWidth="64.0" text="STT" />
+                <TableColumn fx:id="hoTenColumn" prefWidth="196.800048828125" text="Họ tên" />
+                  <TableColumn fx:id="cccdColumn" prefWidth="226.4000122070313" text="CCCD" />
+                  <TableColumn fx:id="sdtColumn" prefWidth="243.199951171875" text="Số điện thoại" />
               </columns>
                <VBox.margin>
                   <Insets />
@@ -49,7 +50,7 @@
                         <Insets bottom="2.0" left="27.0" top="12.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField prefHeight="47.0" prefWidth="254.0" promptText="Tên khách hàng" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                  <TextField fx:id="txtTenKhachHang" prefHeight="47.0" prefWidth="254.0" promptText="Tên khách hàng" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                      <VBox.margin>
                         <Insets left="16.0" right="16.0" />
                      </VBox.margin>
@@ -59,7 +60,7 @@
                         <Insets bottom="2.0" left="27.0" top="12.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField prefHeight="47.0" prefWidth="254.0" promptText="CCCD" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                  <TextField fx:id="txtCCCD" prefHeight="47.0" prefWidth="254.0" promptText="CCCD" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                      <VBox.margin>
                         <Insets left="16.0" right="16.0" />
                      </VBox.margin>
@@ -69,7 +70,7 @@
                         <Insets bottom="2.0" left="27.0" top="12.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField prefHeight="47.0" prefWidth="254.0" promptText="SĐT" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                  <TextField fx:id="txtSDT" prefHeight="47.0" prefWidth="254.0" promptText="SĐT" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                      <VBox.margin>
                         <Insets left="16.0" right="16.0" />
                      </VBox.margin>
@@ -88,7 +89,7 @@
                   </Button>
                   <Button fx:id="btnDL" mnemonicParsing="false" onAction="#DL" style="-fx-background-color: DCFFD0;" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css">
                      <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="btnDelete" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../MyLibrary/Icons/iconBin.png" />
                            </image>

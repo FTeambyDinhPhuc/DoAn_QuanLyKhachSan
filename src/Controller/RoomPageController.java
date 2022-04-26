@@ -55,7 +55,6 @@ public class RoomPageController implements Initializable {
 			room.setStatus("Trong");
 			rooms.add(room);
 		}
-		
 		return rooms;
 	}
 

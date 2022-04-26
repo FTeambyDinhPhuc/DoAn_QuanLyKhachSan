@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
@@ -41,8 +42,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 public class CustomerPageController implements Initializable{
+	
 	ConnectSql Sql = new ConnectSql();
 	private static final String SELECT_QUERY_KH = "SELECT * FROM KhachHang";
+	
 	@FXML
 	private Button btnEditing;
 	@FXML
@@ -63,15 +66,18 @@ public class CustomerPageController implements Initializable{
 	private TableColumn<Customers, String> sdtColumn;
 	@FXML
 	private TableColumn<Customers, Integer> sttColumn;
+	
+	Stage stage;
 	Customers customers;
 	
-	ObservableList<Customers> customersList =FXCollections.observableArrayList();
+	ObservableList<Customers> customersList = FXCollections.observableArrayList();
 	// Event Listener on Button[#btnEditing].onAction
 	@FXML
 	public void Editing(ActionEvent event)throws IOException, SQLException  {
 		String tenKhachHang= txtTenKhachHang.getText();
 		String soDienThoai = txtSDT.getText();
 		String cCCD = txtCCCD.getText();
+		String btnName = btnEditing.getText();
 		if(!IsNumber(cCCD))
 		{
 			WarningAlerKTCCCD();
@@ -87,14 +93,22 @@ public class CustomerPageController implements Initializable{
 			WarningAlertInput();
 		}
 		else 
-		{				
-			customers = new Customers();
-			customers.ThemKhachHang(tenKhachHang, soDienThoai, cCCD);
-			Clean();
-			refreshTable();						
-			//Edit();	
-		}				
+		{
+			if(btnName.compareTo("Thêm") == 0){
+				// thêm
+				customers = new Customers();
+				customers.ThemKhachHang(tenKhachHang, soDienThoai, cCCD);
+				Clean();
+				refreshTable();						
+
+			} else {
+				// chỉnh sửa
+				Edit();
+			}
+		}
 	}
+	
+	
 	public static boolean IsNumber(String x)
 	{
 		NumberFormat format = NumberFormat.getInstance();
@@ -104,40 +118,37 @@ public class CustomerPageController implements Initializable{
 		
 	}
 	
+	private static void showAlert(AlertType alertType,Stage stage, String title, String message)
+	{
+		Alert alert = new Alert(alertType);
+	    alert.setTitle(title);
+	    alert.setHeaderText(null);
+	    alert.setContentText(message);
+	    alert.showAndWait();
+		}
 	
 	// Event Listener on Button[#btnDL].onAction
 	@FXML
 	public void DL(ActionEvent event){
-		
+		try {
 		TablePosition<?, ?> pos = tableCustomers.getSelectionModel().getSelectedCells().get(0);
 		int index = pos.getRow();
 		int mkh3 = (int)tableCustomers.getItems().get(index).getMaKhachHang();
 		customers = tableCustomers.getSelectionModel().getSelectedItem();
 		Customers cus = new Customers();
 		boolean xoaKhachHang = cus.XoaKhachHang(mkh3);
-		refreshTable();	
+		refreshTable();
+		} catch(Exception e) {
+			showAlert(Alert.AlertType.ERROR, stage, "Thông báo!" , "Chưa chọn khách hàng để xóa!");
+		}
 	}
 	
 	//InitList
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		try {
-			Connection conn =DriverManager.getConnection(Sql.DATABASE_URL,Sql.DATABASE_USERNAME,Sql.DATABASE_PASSWORD);
-			ResultSet rs = conn.createStatement().executeQuery(SELECT_QUERY_KH);
-			while (rs.next())
-			{
-				customersList.add(new Customers(rs.getInt("MaKhachHang"),rs.getString("TenKhachHang"),rs.getString("CCCD"),rs.getString("SoDienThoai")));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		sttColumn.setCellValueFactory(new PropertyValueFactory<>("MaKhachHang"));
-		hoTenColumn.setCellValueFactory(new PropertyValueFactory<>("TenKhachHang"));
-		cccdColumn.setCellValueFactory(new PropertyValueFactory<>("CCCD"));
-		sdtColumn.setCellValueFactory(new PropertyValueFactory<>("SoDienThoai"));	
-		tableCustomers.setItems(customersList);	
-		
+		customers = new Customers();
+		customersList = customers.getDataCustomers();
+		refreshTable();
 	}
 	
 	//Row click
@@ -148,10 +159,13 @@ public class CustomerPageController implements Initializable{
 			Customers clickCustomers = tableCustomers.getSelectionModel().getSelectedItem();
 			txtTenKhachHang.setText(String.valueOf(clickCustomers.getTenKhachHang()));
 			txtSDT.setText(String.valueOf(clickCustomers.getSoDienThoai()));
-			txtCCCD.setText(String.valueOf(clickCustomers.getCCCD()));	
+			txtCCCD.setText(String.valueOf(clickCustomers.getCCCD()));
+			btnEditing.setText("Chỉnh sửa");
+			
 		}else
 		{
 			Clean();
+			btnEditing.setText("Thêm");
 		}
     }
 	
@@ -166,23 +180,15 @@ public class CustomerPageController implements Initializable{
 	//refreshTableView
 	private void refreshTable()
 	{
-		try {
-			customersList.clear();
-			Connection conn =DriverManager.getConnection(Sql.DATABASE_URL,Sql.DATABASE_USERNAME,Sql.DATABASE_PASSWORD);
-			ResultSet rs = conn.createStatement().executeQuery(SELECT_QUERY_KH);
-			while (rs.next())
-			{
-				customersList.add(new Customers(rs.getInt("MaKhachHang"),rs.getString("TenKhachHang"),rs.getString("CCCD"),rs.getString("SoDienThoai")));
-			}
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
+		customersList.clear();
+		customers = new Customers();
+		customersList = customers.getDataCustomers();
+		UpdateTable();
 	}
 	
 	//Update Table
 	private void UpdateTable()
 	{
-		
 		sttColumn.setCellValueFactory(new PropertyValueFactory<>("MaKhachHang"));
 		hoTenColumn.setCellValueFactory(new PropertyValueFactory<>("TenKhachHang"));
 		cccdColumn.setCellValueFactory(new PropertyValueFactory<>("CCCD"));
@@ -201,7 +207,6 @@ public class CustomerPageController implements Initializable{
 		String cccd = txtCCCD.getText();
 		Customers cus1 = new Customers();
 		cus1.Edit(tkh, sdt, cccd,mkh);
-		UpdateTable();
 		Clean();
 		refreshTable();
 	}

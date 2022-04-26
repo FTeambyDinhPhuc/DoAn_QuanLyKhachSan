@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomerPageController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomerPageController">
    <children>
       <VBox fillWidth="false" prefWidth="784.0">
          <children>
@@ -82,7 +82,7 @@
             </VBox>
             <HBox fillHeight="false">
                <children>
-                  <Button fx:id="btnEditing" mnemonicParsing="false" onAction="#Editing" prefHeight="48.0" prefWidth="200.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Chỉnh sửa">
+                  <Button fx:id="btnEditing" mnemonicParsing="false" onAction="#Editing" prefHeight="48.0" prefWidth="200.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Thêm">
                      <HBox.margin>
                         <Insets right="12.0" />
                      </HBox.margin>

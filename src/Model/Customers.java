@@ -4,23 +4,26 @@ package Model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import application.ConnectSql;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 public class Customers{
 
 	ConnectSql Sql = new ConnectSql();
+	private static final String SELECT_QUERY_KH = "SELECT * FROM KhachHang";
 	private static final String SELECT_QUERY_ADD ="INSERT INTO KhachHang(TenKhachHang,CCCD,SoDienThoai) VALUES(?,?,?)";
 	private static final String SELECT_QUERY_DELETE ="DELETE FROM KhachHang WHERE MaKhachHang=?";
-	private static final String SELECT_QUERY_EDIT = "UPDATE KhachHang SET TenKhachHang=?, SoDienThoai=?, CCCD=? where MaKhachHang=?";
+	private static final String SELECT_QUERY_EDIT = "UPDATE KhachHang SET TenKhachHang=?,CCCD=? ,SoDienThoai=?  where MaKhachHang=?";
 	private int MaKhachHang;
 	private String TenKhachHang;
 	private String SoDienThoai;
 	private String CCCD;
 	
 
-	Customers customers;
 	public Customers() {
 		
 	}
@@ -114,6 +117,23 @@ public class Customers{
 		}
 		return false;
 		
+	}
+	
+	public ObservableList<Customers> getDataCustomers(){
+		try {
+			Connection conn =DriverManager.getConnection(Sql.DATABASE_URL,Sql.DATABASE_USERNAME,Sql.DATABASE_PASSWORD);
+			ResultSet rs = conn.createStatement().executeQuery(SELECT_QUERY_KH);
+			ObservableList<Customers> customersList = FXCollections.observableArrayList();
+			while (rs.next())
+			{
+				customersList.add(new Customers(rs.getInt("MaKhachHang"),rs.getString("TenKhachHang"),rs.getString("CCCD"),rs.getString("SoDienThoai")));
+			}
+			return customersList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	//Print Exception

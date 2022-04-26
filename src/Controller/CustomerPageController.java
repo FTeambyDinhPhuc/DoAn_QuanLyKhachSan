@@ -39,13 +39,13 @@ import application.ConnectSql;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 
 public class CustomerPageController implements Initializable{
 	
 	ConnectSql Sql = new ConnectSql();
-	private static final String SELECT_QUERY_KH = "SELECT * FROM KhachHang";
-	
 	@FXML
 	private Button btnEditing;
 	@FXML
@@ -58,6 +58,8 @@ public class CustomerPageController implements Initializable{
 	private TextField txtSDT;
 	@FXML
 	private TextField txtTenKhachHang;
+    @FXML
+    private TextField keywordTextField;
 	@FXML
 	private TableColumn<Customers, String> cccdColumn;
 	@FXML
@@ -103,9 +105,10 @@ public class CustomerPageController implements Initializable{
 
 			} else {
 				// chỉnh sửa
-				Edit();
+				Edit();				
 			}
 		}
+		refreshTable();
 	}
 	
 	
@@ -149,24 +152,60 @@ public class CustomerPageController implements Initializable{
 		customers = new Customers();
 		customersList = customers.getDataCustomers();
 		refreshTable();
+		
+		
+		
 	}
-	
+	private void Search()
+	{
+		//Initial filtered list
+				FilteredList<Customers> filteredData =new FilteredList<>(customersList, b->true);
+				keywordTextField.textProperty().addListener((observable,oldValue, newValue) -> {
+					filteredData.setPredicate(customers ->{			
+						if(newValue.isEmpty() || newValue==null)
+						{
+							return true;
+						}
+						String searchKeyword = newValue.toLowerCase();
+						if(customers.getCCCD().toLowerCase().indexOf(searchKeyword) > -1)
+						{
+							return true;
+						}
+						else if(customers.getTenKhachHang().toLowerCase().indexOf(searchKeyword) >-1)
+						{
+							return true;
+						}else if(customers.getSoDienThoai().toLowerCase().indexOf(searchKeyword) >-1)
+						{
+							return true;
+						}else
+							return false;
+					}); 
+				});
+				SortedList<Customers> sortedData = new SortedList<>(filteredData);
+				sortedData.comparatorProperty().bind(tableCustomers.comparatorProperty());
+				tableCustomers.setItems(sortedData);
+				
+	}
 	//Row click
 	@FXML
     void rowClick(MouseEvent event) {
-		if (event.getClickCount()==2)
-		{
-			Customers clickCustomers = tableCustomers.getSelectionModel().getSelectedItem();
-			txtTenKhachHang.setText(String.valueOf(clickCustomers.getTenKhachHang()));
-			txtSDT.setText(String.valueOf(clickCustomers.getSoDienThoai()));
-			txtCCCD.setText(String.valueOf(clickCustomers.getCCCD()));
-			btnEditing.setText("Chỉnh sửa");
-			
-		}else
-		{
-			Clean();
-			btnEditing.setText("Thêm");
+		try {
+			if (event.getClickCount()==2)
+			{
+				Customers clickCustomers = tableCustomers.getSelectionModel().getSelectedItem();
+				txtTenKhachHang.setText(String.valueOf(clickCustomers.getTenKhachHang()));
+				txtSDT.setText(String.valueOf(clickCustomers.getSoDienThoai()));
+				txtCCCD.setText(String.valueOf(clickCustomers.getCCCD()));
+				btnEditing.setText("Chỉnh sửa");
+			}else
+			{
+				Clean();
+				btnEditing.setText("Thêm");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+		
     }
 	
 	//Clean
@@ -184,6 +223,7 @@ public class CustomerPageController implements Initializable{
 		customers = new Customers();
 		customersList = customers.getDataCustomers();
 		UpdateTable();
+		Search();
 	}
 	
 	//Update Table

@@ -36,7 +36,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 
 public class StatisticalPageController implements Initializable{
-	final String excelFilePath = "F://JavaEclipse/Thống kê hóa đơn.xlsx";
+	final String excelFilePath = "D://ThongKeHoaDon.xlsx";
     @FXML
     private TableColumn<DetailBill, String> dichVuColumn;
 
@@ -74,10 +74,6 @@ public class StatisticalPageController implements Initializable{
     private TableColumn<Bill, Float> tongTienColumn;
     @FXML
     private TextField keyWordSearch;
-    @FXML
-    private DatePicker endPicker;
-    @FXML
-    private DatePicker startPicker;
     @FXML
     private ImageView exportExcel;
     private FileOutputStream fis;

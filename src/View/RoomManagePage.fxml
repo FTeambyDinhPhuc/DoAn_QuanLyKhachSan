@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomManagePageController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomManagePageController">
    <children>
       <VBox fillWidth="false" prefWidth="784.0">
          <children>
@@ -27,11 +27,11 @@
             </TextField>
             <TableView fx:id="tableRoom" onMouseClicked="#rowClick" opacity="0.9" prefHeight="523.0" prefWidth="731.0">
                <columns>
-                  <TableColumn fx:id="maPhongColumn" prefWidth="76.80001831054688" text="Mã Phòng" />
-                  <TableColumn fx:id="soPhongColumn" maxWidth="153.5999755859375" prefWidth="133.60000610351562" text="Số Phòng" />
-                  <TableColumn fx:id="soGiuongColumn" maxWidth="214.39999389648438" prefWidth="165.60003662109375" text="Số giường" />
-                  <TableColumn fx:id="loaiPhongColumn" maxWidth="303.99993896484375" prefWidth="164.7999267578125" text="Loại phòng" />
-                  <TableColumn fx:id="donGiaColomn" maxWidth="308.0" prefWidth="192.80010986328125" text="Đơn giá(vnđ/giờ)" />
+                  <TableColumn fx:id="maPhongColumn" maxWidth="1.7976931348623157E308" prefWidth="126.2" text="Mã Phòng" />
+                  <TableColumn fx:id="soPhongColumn" maxWidth="1.7976931348623157E308" prefWidth="146.2" text="Số Phòng" />
+                  <TableColumn fx:id="soGiuongColumn" maxWidth="1.7976931348623157E308" prefWidth="146.2" text="Số giường" />
+                  <TableColumn fx:id="loaiPhongColumn" maxWidth="1.7976931348623157E308" prefWidth="146.2" text="Loại phòng" />
+                  <TableColumn fx:id="donGiaColomn" maxWidth="1.7976931348623157E308" prefWidth="162.2" text="Đơn giá(vnđ/giờ)" />
                </columns>
                <VBox.margin>
                   <Insets />
@@ -112,7 +112,7 @@
             </VBox>
             <HBox fillHeight="false">
                <children>
-                  <Button fx:id="btnEditing" mnemonicParsing="false" onAction="#Editing" prefHeight="48.0" prefWidth="200.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Chỉnh sửa">
+                  <Button fx:id="btnEditing" mnemonicParsing="false" onAction="#Editing" prefHeight="48.0" prefWidth="200.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Thêm">
                      <HBox.margin>
                         <Insets right="12.0" />
                      </HBox.margin>
@@ -128,7 +128,7 @@
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets top="340.0" />
+                  <Insets top="329.0" />
                </VBox.margin>
                <padding>
                   <Insets left="12.0" right="12.0" />

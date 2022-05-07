@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StatisticalPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StatisticalPageController">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -27,11 +26,6 @@
                      <HBox.margin>
                         <Insets right="16.0" />
                      </HBox.margin></TextField>
-                  <DatePicker fx:id="startPicker" prefHeight="42.0" prefWidth="120.0" promptText="Ngày nhận" style="-fx-background-color: #98F576;">
-                     <HBox.margin>
-                        <Insets right="16.0" />
-                     </HBox.margin></DatePicker>
-                  <DatePicker fx:id="endPicker" prefHeight="42.0" prefWidth="120.0" promptText="Ngày trả" style="-fx-background-color: #98F576;" />
                   <Button fx:id="btnexportExcel" mnemonicParsing="false" onAction="#onClick" prefHeight="42.0" prefWidth="115.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
@@ -41,7 +35,7 @@
                         </ImageView>
                      </graphic>
                      <HBox.margin>
-                        <Insets left="361.0" />
+                        <Insets left="633.0" />
                      </HBox.margin>
                   </Button>
                </children>

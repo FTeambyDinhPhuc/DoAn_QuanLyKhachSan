@@ -10,6 +10,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,14 +31,11 @@ public class LoginScreenController {
 	
 
 	private Stage stage;
-	private Scene scene;
-	private Parent root;
 
 	// Event Listener on Button[#btnSignIn].onAction
 	@FXML
 	public void SignIn(ActionEvent event) throws IOException {
-		//System.out.println(txtUser.getText());
-				//System.out.println(txtPassword.getText());
+
 				if(txtUser.getText().isEmpty() && txtPassword.getText().isEmpty())
 				{
 					showAlert(Alert.AlertType.ERROR, stage, "Thông báo!" , "Vui lòng nhập tên đăng nhập và mật khẩu!");
@@ -61,7 +60,6 @@ public class LoginScreenController {
 					infoBox("Vui lòng nhập chính xác tên đăng nhập và mật khẩu!",null, "Thông báo!");
 				}else 
 				{
-					infoBox("Đăng nhập thành công!",null,"Thông báo!");
 					Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 					stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 					Scene scene = new Scene(root);
@@ -70,6 +68,7 @@ public class LoginScreenController {
 					stage.show();
 				}	
 	}
+
 	public static void infoBox(String infoMessage, String headerText, String title) 
 	{
 		Alert alert = new Alert(AlertType.CONFIRMATION);

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ServiceManagePageController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ServiceManagePageController">
    <children>
       <VBox fillWidth="false" prefWidth="784.0">
          <children>
@@ -20,15 +20,16 @@
                   <Insets bottom="18.0" left="14.0" top="28.0" />
                </VBox.margin>
             </Label>
-            <TextField prefHeight="42.0" prefWidth="368.0" promptText="Tìm kiếm dịch vụ" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+            <TextField fx:id="keyWordSearchService" prefHeight="42.0" prefWidth="368.0" promptText="Tìm kiếm dịch vụ" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                <VBox.margin>
                   <Insets bottom="31.0" />
                </VBox.margin>
             </TextField>
-            <TableView opacity="0.9" prefHeight="523.0" prefWidth="731.0">
+            <TableView fx:id="tableService" onMouseClicked="#CellClickRowSevice" opacity="0.9" prefHeight="523.0" prefWidth="731.0">
                <columns>
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="438.6" text="Tên dịch vụ" />
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="292.4" text="Đơn giá" />
+                  <TableColumn fx:id="sttDichVuColumn" prefWidth="130.4000244140625" text="Mã dịch vụ" />
+                  <TableColumn fx:id="tenDichVuColumn" maxWidth="1.7976931348623157E308" prefWidth="309.5999755859375" text="Tên dịch vụ" />
+                  <TableColumn fx:id="donGiaColumn" maxWidth="1.7976931348623157E308" prefWidth="291.2000732421875" text="Đơn giá" />
                </columns>
                <VBox.margin>
                   <Insets />
@@ -53,7 +54,7 @@
                         <Insets bottom="2.0" left="27.0" top="12.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField promptText="Tên dịch vụ" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                  <TextField fx:id="txtTenDichVu" promptText="Tên dịch vụ" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                      <VBox.margin>
                         <Insets left="16.0" right="16.0" />
                      </VBox.margin>
@@ -63,7 +64,7 @@
                         <Insets bottom="2.0" left="27.0" top="12.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField promptText="40" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                  <TextField fx:id="txtDonGia" promptText="40" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                      <VBox.margin>
                         <Insets left="16.0" right="16.0" />
                      </VBox.margin>
@@ -72,7 +73,7 @@
             </VBox>
             <HBox fillHeight="false">
                <children>
-                  <Button fx:id="btnEditing" mnemonicParsing="false" onAction="#Editing" prefHeight="48.0" prefWidth="200.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Chỉnh sửa">
+                  <Button fx:id="btnEditing" mnemonicParsing="false" onAction="#Editing" prefHeight="48.0" prefWidth="200.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css" text="Thêm">
                      <HBox.margin>
                         <Insets right="12.0" />
                      </HBox.margin>

@@ -13,22 +13,26 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StatisticalPageController">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
             <Label prefHeight="35.0" prefWidth="338.0" styleClass="labelwhite" stylesheets="@../MyLibrary/Style.css" text="Thống kê">
                <VBox.margin>
-                  <Insets bottom="21.0" top="32.0" />
+                  <Insets bottom="21.0" left="14.0" top="32.0" />
                </VBox.margin></Label>
             <HBox>
                <children>
-                  <TextField prefHeight="42.0" prefWidth="252.0" promptText="Nguyễn Văn A" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                  <TextField fx:id="keyWordSearch" onMouseClicked="#clickSearch" prefHeight="42.0" prefWidth="252.0" promptText="Tìm kiếm" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                      <HBox.margin>
                         <Insets right="16.0" />
                      </HBox.margin></TextField>
-                  <DatePicker prefHeight="42.0" prefWidth="100.0" promptText="07/20/2022" style="-fx-background-color: #98F576;" />
-                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css">
+                  <DatePicker fx:id="startPicker" prefHeight="42.0" prefWidth="120.0" promptText="Ngày nhận" style="-fx-background-color: #98F576;">
+                     <HBox.margin>
+                        <Insets right="16.0" />
+                     </HBox.margin></DatePicker>
+                  <DatePicker fx:id="endPicker" prefHeight="42.0" prefWidth="120.0" promptText="Ngày trả" style="-fx-background-color: #98F576;" />
+                  <Button fx:id="btnexportExcel" mnemonicParsing="false" onAction="#onClick" prefHeight="42.0" prefWidth="115.0" styleClass="buttonmain" stylesheets="@../MyLibrary/Style.css">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -37,7 +41,7 @@
                         </ImageView>
                      </graphic>
                      <HBox.margin>
-                        <Insets left="517.0" />
+                        <Insets left="361.0" />
                      </HBox.margin>
                   </Button>
                </children>
@@ -48,25 +52,47 @@
          </BorderPane.margin>
       </VBox>
    </top>
-   <center>
-      <TableView opacity="0.9" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="115.0" text="Phòng" />
-          <TableColumn prefWidth="161.0" text="Khách hàng" />
-            <TableColumn prefWidth="132.0" text="Ngày nhận" />
-            <TableColumn prefWidth="133.0" text="Ngày trả" />
-            <TableColumn prefWidth="278.0" text="Dịch vụ đã sữ dụng" />
-            <TableColumn prefWidth="239.0" text="Tổng tiền" />
-        </columns>
-         <BorderPane.margin>
-            <Insets bottom="49.0" />
-         </BorderPane.margin>
-      </TableView>
-   </center>
    <padding>
       <Insets left="16.0" right="16.0" />
    </padding>
-   <left>
-      <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER" />
-   </left>
+   <center>
+      <VBox fillWidth="false" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="labelsmallwhite" stylesheets="@../MyLibrary/Style.css" text="Hóa đơn">
+               <VBox.margin>
+                  <Insets left="14.0" />
+               </VBox.margin>
+            </Label>
+            <TableView fx:id="tableHoaDon" onMouseClicked="#clickRow" prefHeight="240.0" prefWidth="1038.0">
+              <columns>
+                <TableColumn fx:id="maHoaDonColumn" prefWidth="120.0" text="Mã hóa đơn" />
+                <TableColumn fx:id="soPhongColumn" prefWidth="120.0" text="Số phòng" />
+                  <TableColumn fx:id="khachHangColumn" prefWidth="203.0" text="Khách hàng" />
+                  <TableColumn fx:id="thoiGianNhanPhongColumn" prefWidth="173.0" text="Thời gian nhận phòng" />
+                  <TableColumn fx:id="thoiGianTraPhongColumn" prefWidth="173.0" text="Thời gian trả phòng" />
+                  <TableColumn fx:id="tongTienColumn" prefWidth="245.0" text="Tổng tiền" />
+              </columns>
+               <VBox.margin>
+                  <Insets bottom="12.0" />
+               </VBox.margin>
+            </TableView>
+            <Label styleClass="labelsmallwhite" stylesheets="@../MyLibrary/Style.css" text="Chi tiết hóa đơn">
+               <VBox.margin>
+                  <Insets left="14.0" />
+               </VBox.margin>
+            </Label>
+            <TableView fx:id="tableChiTietHoaDon" prefHeight="240.0" prefWidth="1038.0">
+              <columns>
+                  <TableColumn fx:id="maHoaDonOfCTHD" prefWidth="120.0" text="Mã hóa đơn" />
+                <TableColumn fx:id="dichVuColumn" prefWidth="399.0" text="Dịch vụ" />
+                <TableColumn fx:id="giaTienColumn" prefWidth="209.5" text="Giá Tiền" />
+                  <TableColumn fx:id="soLuongColumn" prefWidth="305.5" text="Số lượng" />
+              </columns>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TableView>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>

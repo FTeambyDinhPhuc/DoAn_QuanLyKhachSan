@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomManagePageController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomManagePageController">
    <children>
       <VBox fillWidth="false" prefWidth="784.0">
          <children>
@@ -20,17 +20,18 @@
                   <Insets bottom="18.0" left="14.0" top="28.0" />
                </VBox.margin>
             </Label>
-            <TextField prefHeight="42.0" prefWidth="368.0" promptText="101" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+            <TextField fx:id="keyWordTextField" prefHeight="42.0" prefWidth="368.0" promptText="101" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                <VBox.margin>
                   <Insets bottom="31.0" />
                </VBox.margin>
             </TextField>
-            <TableView opacity="0.9" prefHeight="523.0" prefWidth="731.0">
+            <TableView fx:id="tableRoom" onMouseClicked="#rowClick" opacity="0.9" prefHeight="523.0" prefWidth="731.0">
                <columns>
-                  <TableColumn maxWidth="136.0" prefWidth="136.0" text="Phòng" />
-                  <TableColumn maxWidth="161.0" prefWidth="161.0" text="Số giường" />
-                  <TableColumn maxWidth="273.0" prefWidth="132.0" text="Loại phòng" />
-                  <TableColumn maxWidth="308.0" prefWidth="302.0" text="Đơn giá(vnđ/giờ)" />
+                  <TableColumn fx:id="maPhongColumn" prefWidth="76.80001831054688" text="Mã Phòng" />
+                  <TableColumn fx:id="soPhongColumn" maxWidth="153.5999755859375" prefWidth="133.60000610351562" text="Số Phòng" />
+                  <TableColumn fx:id="soGiuongColumn" maxWidth="214.39999389648438" prefWidth="165.60003662109375" text="Số giường" />
+                  <TableColumn fx:id="loaiPhongColumn" maxWidth="303.99993896484375" prefWidth="164.7999267578125" text="Loại phòng" />
+                  <TableColumn fx:id="donGiaColomn" maxWidth="308.0" prefWidth="192.80010986328125" text="Đơn giá(vnđ/giờ)" />
                </columns>
                <VBox.margin>
                   <Insets />
@@ -48,7 +49,7 @@
          <children>
             <HBox alignment="CENTER" fillHeight="false" style="-fx-border-color: rgba(68,85,90,0.2); -fx-border-width: 0px 0px 2px 0px;">
                <children>
-                  <Label styleClass="labelmain" stylesheets="@../MyLibrary/Style.css" text="101  ">
+                  <Label fx:id="lbSoPhong" styleClass="labelmain" stylesheets="@../MyLibrary/Style.css" text="000  ">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Label>
@@ -56,7 +57,7 @@
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Label>
-                  <Label styleClass="labelmain" stylesheets="@../MyLibrary/Style.css" text="  VIP">
+                  <Label fx:id="lbLoaiPhong" styleClass="labelmain" stylesheets="@../MyLibrary/Style.css" text="  XXX">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Label>
@@ -72,7 +73,7 @@
                         <Insets bottom="2.0" left="27.0" top="12.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField prefHeight="32.0" prefWidth="254.0" promptText="Tên phòng" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                  <TextField fx:id="txtTenPhong" prefHeight="32.0" prefWidth="254.0" promptText="Tên phòng" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                      <VBox.margin>
                         <Insets left="16.0" />
                      </VBox.margin>
@@ -82,7 +83,7 @@
                         <Insets bottom="2.0" left="27.0" top="12.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField prefHeight="32.0" prefWidth="254.0" promptText="Số giường" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                  <TextField fx:id="txtSoGiuong" prefHeight="32.0" prefWidth="254.0" promptText="Số giường" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                      <VBox.margin>
                         <Insets left="16.0" right="16.0" />
                      </VBox.margin>
@@ -92,7 +93,7 @@
                         <Insets bottom="2.0" left="27.0" top="12.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField prefHeight="32.0" prefWidth="254.0" promptText="Loại phòng" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                  <TextField fx:id="txtLoaiPhong" prefHeight="32.0" prefWidth="254.0" promptText="Loại phòng" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                      <VBox.margin>
                         <Insets left="16.0" right="16.0" />
                      </VBox.margin>
@@ -102,7 +103,7 @@
                         <Insets bottom="2.0" left="27.0" top="12.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField prefHeight="32.0" prefWidth="254.0" promptText="40" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
+                  <TextField fx:id="txtDonGia" prefHeight="32.0" prefWidth="254.0" promptText="40" styleClass="textfield-mycustom" stylesheets="@../MyLibrary/Style.css">
                      <VBox.margin>
                         <Insets left="16.0" right="16.0" />
                      </VBox.margin>

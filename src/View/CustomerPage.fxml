@@ -27,10 +27,9 @@
             </TextField>
             <TableView fx:id="tableCustomers" onMouseClicked="#rowClick" opacity="0.9" prefHeight="523.0" prefWidth="731.0">
               <columns>
-                <TableColumn fx:id="sttColumn" prefWidth="64.0" text="STT" />
-                <TableColumn fx:id="hoTenColumn" prefWidth="196.800048828125" text="Họ tên" />
-                  <TableColumn fx:id="cccdColumn" prefWidth="226.4000122070313" text="CCCD" />
-                  <TableColumn fx:id="sdtColumn" prefWidth="243.199951171875" text="Số điện thoại" />
+                <TableColumn fx:id="hoTenColumn" prefWidth="280.5" text="Họ tên" />
+                  <TableColumn fx:id="cccdColumn" prefWidth="212.75" text="CCCD" />
+                  <TableColumn fx:id="sdtColumn" prefWidth="232.75" text="Số điện thoại" />
               </columns>
                <VBox.margin>
                   <Insets />

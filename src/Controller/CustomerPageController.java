@@ -1,42 +1,25 @@
 package Controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Cell;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.text.ParsePosition;
-import java.util.List;
 import java.util.ResourceBundle;
-
-import javax.swing.text.TabableView;
-
 import Model.Customers;
 import application.ConnectSql;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -99,13 +82,15 @@ public class CustomerPageController implements Initializable{
 			if(btnName.compareTo("Thêm") == 0){
 				// thêm
 				customers = new Customers();
-				customers.ThemKhachHang(tenKhachHang, soDienThoai, cCCD);
+				customers.ThemKhachHang(tenKhachHang, cCCD, soDienThoai);
+				showAlertAddCustomerSuccess();
 				Clean();
 				refreshTable();						
 
 			} else {
 				// chỉnh sửa
-				Edit();				
+				Edit();		
+				
 			}
 		}
 		refreshTable();
@@ -137,10 +122,12 @@ public class CustomerPageController implements Initializable{
 		TablePosition<?, ?> pos = tableCustomers.getSelectionModel().getSelectedCells().get(0);
 		int index = pos.getRow();
 		int mkh3 = (int)tableCustomers.getItems().get(index).getMaKhachHang();
-		customers = tableCustomers.getSelectionModel().getSelectedItem();
+		//customers = tableCustomers.getSelectionModel().getSelectedItem();
 		Customers cus = new Customers();
-		boolean xoaKhachHang = cus.XoaKhachHang(mkh3);
+		cus.XoaKhachHang(mkh3);
 		refreshTable();
+		Clean();
+		showAlertDeleteCustomerSuccess();
 		} catch(Exception e) {
 			showAlert(Alert.AlertType.ERROR, stage, "Thông báo!" , "Chưa chọn khách hàng để xóa!");
 		}
@@ -151,40 +138,36 @@ public class CustomerPageController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		customers = new Customers();
 		customersList = customers.getDataCustomers();
-		refreshTable();
-		
-		
-		
+		refreshTable();						
 	}
 	private void Search()
 	{
 		//Initial filtered list
-				FilteredList<Customers> filteredData =new FilteredList<>(customersList, b->true);
-				keywordTextField.textProperty().addListener((observable,oldValue, newValue) -> {
-					filteredData.setPredicate(customers ->{			
-						if(newValue.isEmpty() || newValue==null)
-						{
-							return true;
-						}
-						String searchKeyword = newValue.toLowerCase();
-						if(customers.getCCCD().toLowerCase().indexOf(searchKeyword) > -1)
-						{
-							return true;
-						}
-						else if(customers.getTenKhachHang().toLowerCase().indexOf(searchKeyword) >-1)
-						{
-							return true;
-						}else if(customers.getSoDienThoai().toLowerCase().indexOf(searchKeyword) >-1)
-						{
-							return true;
-						}else
-							return false;
-					}); 
-				});
-				SortedList<Customers> sortedData = new SortedList<>(filteredData);
-				sortedData.comparatorProperty().bind(tableCustomers.comparatorProperty());
-				tableCustomers.setItems(sortedData);
-				
+		FilteredList<Customers> filteredData =new FilteredList<>(customersList, b->true);
+		keywordTextField.textProperty().addListener((observable,oldValue, newValue) -> {
+				filteredData.setPredicate(customers ->{			
+				if(newValue.isEmpty() || newValue==null)
+				{
+					return true;
+				}
+				String searchKeyword = newValue.toLowerCase();
+				if(customers.getCCCD().toLowerCase().indexOf(searchKeyword) > -1)
+				{
+					return true;
+				}
+				else if(customers.getTenKhachHang().toLowerCase().indexOf(searchKeyword) >-1)
+				{
+					return true;
+				}else if(customers.getSoDienThoai().toLowerCase().indexOf(searchKeyword) >-1)
+				{
+					return true;
+				}else
+					return false;
+			}); 
+		});
+		SortedList<Customers> sortedData = new SortedList<>(filteredData);
+		sortedData.comparatorProperty().bind(tableCustomers.comparatorProperty());
+		tableCustomers.setItems(sortedData);			
 	}
 	//Row click
 	@FXML
@@ -204,10 +187,8 @@ public class CustomerPageController implements Initializable{
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-		}
-		
-    }
-	
+		}		
+    }	
 	//Clean
 	private void Clean()
 	{
@@ -229,7 +210,7 @@ public class CustomerPageController implements Initializable{
 	//Update Table
 	private void UpdateTable()
 	{
-		sttColumn.setCellValueFactory(new PropertyValueFactory<>("MaKhachHang"));
+		//sttColumn.setCellValueFactory(new PropertyValueFactory<>("MaKhachHang"));
 		hoTenColumn.setCellValueFactory(new PropertyValueFactory<>("TenKhachHang"));
 		cccdColumn.setCellValueFactory(new PropertyValueFactory<>("CCCD"));
 		sdtColumn.setCellValueFactory(new PropertyValueFactory<>("SoDienThoai"));
@@ -246,16 +227,18 @@ public class CustomerPageController implements Initializable{
 		String sdt = txtSDT.getText();
 		String cccd = txtCCCD.getText();
 		Customers cus1 = new Customers();
-		cus1.Edit(tkh, sdt, cccd,mkh);
+		cus1.Edit(tkh, cccd, sdt,mkh);
 		Clean();
 		refreshTable();
+		showAlertEditInformationSuccess();
+
 	}
 	//Warning Alert Nhập
 	private void WarningAlertInput() {
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setTitle("Cảnh báo!");
 		alert.setHeaderText(null);
-		alert.setContentText("Vui lòng nhập thông tin!");
+		alert.setContentText("Vui lòng nhập đầy đủ thông tin!");
 		alert.showAndWait();
 	}
 	//Warning Alert Kiểm tra CCCD
@@ -276,5 +259,28 @@ public class CustomerPageController implements Initializable{
 		alert.setContentText("Vui lòng nhập đúng số điện thoại!");
 		alert.showAndWait();
 	}
-	
+	// Hiển thị Information Alert Thêm khách hàng thành công
+	private void showAlertAddCustomerSuccess() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Thông báo");
+		alert.setHeaderText(null);
+		alert.setContentText("Thêm khách hàng thành công!");
+		alert.showAndWait();
+	}
+	// Hiển thị Information Alert Thêm khách hàng thành công
+	private void showAlertEditInformationSuccess() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Thông báo");
+		alert.setHeaderText(null);
+		alert.setContentText("Sửa thông tin khách hàng thành công!");
+		alert.showAndWait();
+	}
+	// Hiển thị Information Alert Xóa khách hàng thành công
+	private void showAlertDeleteCustomerSuccess() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Thông báo");
+		alert.setHeaderText(null);
+		alert.setContentText("Xóa khách hàng thành công!");
+		alert.showAndWait();
+	}
 }

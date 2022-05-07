@@ -12,5 +12,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="src/MyLibrary/mssql-jdbc-10.2.0.jre8.jar"/>
+	<classpathentry kind="lib" path="src/MyLibrary/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="src/MyLibrary/commons-collections4-4.2.jar"/>
+	<classpathentry kind="lib" path="src/MyLibrary/commons-compress-1.18.jar"/>
+	<classpathentry kind="lib" path="src/MyLibrary/poi-4.0.1.jar"/>
+	<classpathentry kind="lib" path="src/MyLibrary/poi-ooxml-4.0.1.jar"/>
+	<classpathentry kind="lib" path="src/MyLibrary/poi-ooxml-schemas-4.0.1.jar"/>
+	<classpathentry kind="lib" path="src/MyLibrary/xmlbeans-3.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

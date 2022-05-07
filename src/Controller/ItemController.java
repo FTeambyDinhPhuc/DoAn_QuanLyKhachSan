@@ -20,6 +20,7 @@ public class ItemController {
 
     public void setData(Room room) {
     	this.room = room;
+    	bpRoom.setStyle("-fx-background-color: " + room.getColor() + "; -fx-background-radius: 15;");
     	lbNumberRoom.setText(room.getName());
     	lbStatusRoom.setText(room.getStatus());
     }

@@ -15,6 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 import java.util.ResourceBundle;
 import Model.Room;
 import javafx.collections.FXCollections;
@@ -62,8 +64,6 @@ public class RoomManagePageController implements Initializable {
 	// Event Listener on Button[#btnEditing].onAction
 	@FXML
 	public void Editing(ActionEvent event) throws IOException {
-		String soPhong = txtTenPhong.getText();		
-		String tenLoaiPhong = txtLoaiPhong.getText();
 		
 		String btnName = btnEditing.getText();
 		if(txtDonGia.getText()==""||txtLoaiPhong.getText()==""||txtSoGiuong.getText()==""||txtTenPhong.getText()=="")
@@ -74,20 +74,56 @@ public class RoomManagePageController implements Initializable {
 		{
 			if(btnName.compareTo("Thêm") == 0){
 			// thêm
+			ConstaintAddRoom();
+
+			} else {
+			// chỉnh sửa
+			Edit();				
+			}
+		}
+		refreshTable();		
+	}
+
+	public static boolean IsNumber(String x)
+	{
+		NumberFormat format = NumberFormat.getInstance();
+		ParsePosition pos = new ParsePosition(0);
+		format.parse(x, pos);
+		return x.length()==pos.getIndex();
+		
+	}
+	private void ConstaintAddRoom()
+	{
+		String soPhong = txtTenPhong.getText();		
+		String tenLoaiPhong = txtLoaiPhong.getText();
+		String donGia =txtDonGia.getText();
+		String soGiuong= txtSoGiuong.getText();
+		if(!IsNumber(donGia))
+		{
+			WarningAlertConstraintInput();
+			return;
+		}
+		if(!IsNumber(soGiuong))
+		{
+			WarningAlertConstraintInput();
+			return;
+		}		
+		if(tenLoaiPhong.compareTo("VIP")==0| tenLoaiPhong.compareTo("Thường")==0)
+		{
 			room = new Room();
-			Float donGia = Float.parseFloat(txtDonGia.getText());
-			int soGiuong = Integer.parseInt(txtSoGiuong.getText());
+			Float donG = Float.parseFloat(txtDonGia.getText());
+			int soG = Integer.parseInt(txtSoGiuong.getText());
 			int mlp= room.LayMaLoaiPhong(tenLoaiPhong);
-			room.ThemPhong(soPhong, soGiuong, mlp, donGia);
+			room.ThemPhong(soPhong, soG, mlp, donG);
 			Clean();
 			refreshTable();		
 			showAlertAddNewRoomSuccess();
-		} else {
-			// chỉnh sửa
-			Edit();				
 		}
-	}
-		refreshTable();		
+		else
+		{
+			WarningAlertConstraintDetailRoom();
+			return;
+		}
 	}
 	// Event Listener on Button[#btnDL].onAction
 	@FXML
@@ -107,20 +143,47 @@ public class RoomManagePageController implements Initializable {
 	//Edit
 	private void Edit()
 	{
-		@SuppressWarnings("rawtypes")
-		TablePosition pos = tableRoom.getSelectionModel().getSelectedCells().get(0);
-		int index = pos.getRow();
-		int mp = (int)tableRoom.getItems().get(index).getMaPhong();
-		String tp= txtTenPhong.getText();
-		String lp =txtLoaiPhong.getText();
-		int sg = Integer.parseInt(txtSoGiuong.getText());
-		int mlp= room.LayMaLoaiPhong(lp); 
-		Float gtp= Float.parseFloat(txtDonGia.getText());
-		Room room1 = new Room();
-		room1.Edit(tp, sg, mlp, gtp, mp);
-		Clean();
-		showAlertEditRoomSuccess();
-		refreshTable();
+		try {
+			String soPhong = txtTenPhong.getText();		
+			String tenLoaiPhong = txtLoaiPhong.getText();
+			String donGia =txtDonGia.getText();
+			String soGiuong= txtSoGiuong.getText();
+			if(!IsNumber(donGia))
+			{
+				WarningAlertConstraintInput();
+				return;
+			}
+			if(!IsNumber(soGiuong))
+			{
+				WarningAlertConstraintInput();
+				return;
+			}	
+			if(tenLoaiPhong.compareTo("VIP")==0| tenLoaiPhong.compareTo("Thường")==0)
+			{
+				TablePosition pos = tableRoom.getSelectionModel().getSelectedCells().get(0);
+				int index = pos.getRow();
+				int mp = (int)tableRoom.getItems().get(index).getMaPhong();
+				String tp= txtTenPhong.getText();
+				String lp =txtLoaiPhong.getText();
+				int sg = Integer.parseInt(txtSoGiuong.getText());
+				int mlp= room.LayMaLoaiPhong(lp); 
+				Float gtp= Float.parseFloat(txtDonGia.getText());
+				
+				Room room1 = new Room();
+				room1.Edit(tp, sg, mlp, gtp, mp);
+				Clean();
+				showAlertEditRoomSuccess();
+				refreshTable();
+			}
+			else
+			{
+				WarningAlertConstraintDetailRoom();
+				return;
+			}
+		} catch (Exception e) {
+			showAlertAddRoomIsFail();
+		}
+
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -157,18 +220,15 @@ public class RoomManagePageController implements Initializable {
 				txtTenPhong.setText(String.valueOf(clickRoom.getSoPhong()));
 				txtSoGiuong.setText(String.valueOf(clickRoom.getSoGiuong()));
 				txtLoaiPhong.setText(String.valueOf(clickRoom.getTenLoaiPhong()));
-				txtDonGia.setText(String.valueOf(clickRoom.getGiaTienPhong()));
-				
+				txtDonGia.setText(String.valueOf(clickRoom.getGiaTienPhong()));				
 				lbSoPhong.setText(String.valueOf(clickRoom.getSoPhong())+"  ");
-				lbLoaiPhong.setText("  "+String.valueOf(clickRoom.getTenLoaiPhong()));
-				
+				lbLoaiPhong.setText("  "+String.valueOf(clickRoom.getTenLoaiPhong()));			
 				btnEditing.setText("Chỉnh sửa");
 			}else
 			{
 				Clean();
 				btnEditing.setText("Thêm");
-				lbSoPhong.setText("000  ");
-				lbLoaiPhong.setText("  XXX");
+
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -182,6 +242,8 @@ public class RoomManagePageController implements Initializable {
 		txtSoGiuong.clear();
 		txtLoaiPhong.clear();	
 		txtDonGia.clear();
+		lbSoPhong.setText("000  ");
+		lbLoaiPhong.setText("  XXX");
 	}
 	private void Search()
 	{
@@ -250,6 +312,31 @@ public class RoomManagePageController implements Initializable {
 		// Header Text: null
 		alert.setHeaderText(null);
 		alert.setContentText("Xóa phòng thành công!");
+		alert.showAndWait();
+	}
+	//Warning Alert ràng buộc số giường và đơn giá
+	private void WarningAlertConstraintInput() {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Cảnh báo!");
+		alert.setHeaderText(null);
+		alert.setContentText("Số giường và đơn giá phải nhập số!");
+		alert.showAndWait();
+	}	
+	//Warning Alert ràng buộc nhập loại phòng
+	private void WarningAlertConstraintDetailRoom() {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Cảnh báo!");
+		alert.setHeaderText(null);
+		alert.setContentText("Nhập đúng định dạng loại phòng 'Thường' hoặc 'VIP'");
+		alert.showAndWait();
+	}	
+	// Hiển thị Information Alert xóa phòng thành công
+	private void showAlertAddRoomIsFail() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Thông báo");
+		// Header Text: null
+		alert.setHeaderText(null);
+		alert.setContentText("Sửa phòng thất bại, vui lòng chọn lại phòng!");
 		alert.showAndWait();
 	}
 }

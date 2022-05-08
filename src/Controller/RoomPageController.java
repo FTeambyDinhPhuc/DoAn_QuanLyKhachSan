@@ -339,7 +339,7 @@ public class RoomPageController implements Initializable {
 		sDTField.setText("");
 		dateNhanPhong.setValue(null);
 		dateTraPhong.setValue(null);
-		lbGiaTienPhong.setText("0 VND/Ngày");
+		lbGiaTienPhong.setText("0 vnđ/Ngày");
 	}
  
     @FXML
@@ -442,7 +442,7 @@ public class RoomPageController implements Initializable {
             Room room = new Room();
             int soP= room.LayMaPhong(maPhong1);
             giaTienPhong =room.LayGiaTienPhong(soP);
-            lbGiaTienPhong.setText(Float.toString(giaTienPhong)+"VND/Ngày");
+            lbGiaTienPhong.setText(Float.toString(giaTienPhong)+" vnđ/Ngày");
             KHList1= customers.LayThongTinKhachHang(soP);
             for(int i=0;i<KHList1.size();i++)
             {

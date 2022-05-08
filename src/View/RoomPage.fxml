@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomPageController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" styleClass="backgroundmain" stylesheets="@../MyLibrary/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoomPageController">
    <children>
       <VBox prefWidth="784.0">
          <children>
@@ -158,12 +158,12 @@
             </HBox>
             <HBox prefHeight="28.0" prefWidth="200.0">
                <children>
-                  <Label styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Đơn giá">
+                  <Label prefWidth="45.0" styleClass="labelsmall" stylesheets="@../MyLibrary/Style.css" text="Đơn giá">
                      <HBox.margin>
-                        <Insets right="93.0" />
+                        <Insets right="65.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="lbGiaTienPhong" styleClass="labelmedium" stylesheets="@../MyLibrary/Style.css" text="250.000vnđ/ ngày" />
+                  <Label fx:id="lbGiaTienPhong" alignment="CENTER_RIGHT" prefWidth="140.0" styleClass="labelmedium" stylesheets="@../MyLibrary/Style.css" text="0 vnđ/ Ngày" />
                </children></HBox>
             <VBox alignment="BOTTOM_CENTER" prefHeight="344.0" prefWidth="265.0">
                <children>

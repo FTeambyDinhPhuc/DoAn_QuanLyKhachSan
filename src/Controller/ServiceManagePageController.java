@@ -191,6 +191,7 @@ public class ServiceManagePageController implements Initializable{
 		Service service = new Service();
 		service.EditDichVu(tdv, dg, mdv);
 		Clean();
+		btnEditing.setText("Thêm");
 		refreshTable();
 		showAlertEditService();
 	}

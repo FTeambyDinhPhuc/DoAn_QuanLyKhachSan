@@ -16,7 +16,7 @@ public class Bill {
 	ConnectSql Sql = new ConnectSql();
 	private static final String QUERY_INSERT_BILL="INSERT INTO HoaDon(MaPhong,MaKhachHang,ThoiGianNhanPhong,ThoiGianTraPhong,TongTien) VALUES (?,?,?,?,?)";
 	private static final String QUERY_SELET_LAYMABILL ="SELECT HoaDon.MaHoaDon FROM HoaDon WHERE MaPhong=? AND MaKhachHang =? AND ThoiGianNhanPhong =? AND ThoiGianTraPhong =? AND TongTien= ?";
-	private static final String QUERY_SELECT_BILL ="SELECT MaHoaDon, Phong.SoPhong,KhachHang.TenKhachHang,ThoiGianNhanPhong,ThoiGianTraPhong,TongTien  FROM HoaDon JOIN Phong ON HoaDon.MaPhong=Phong.MaPhong JOIN KhachHang ON HoaDon.MaKhachHang=KhachHang.MaKhachHang";
+	private static final String QUERY_SELECT_BILL ="SELECT MaHoaDon, Phong.SoPhong,KhachHang.TenKhachHang,ThoiGianNhanPhong,ThoiGianTraPhong,TongTien  FROM HoaDon JOIN Phong ON HoaDon.MaPhong=Phong.MaPhong JOIN KhachHang ON HoaDon.MaKhachHang=KhachHang.MaKhachHang ";
 	private int MaHoaDon;
 	private int MaPhong;
 	private int MaKhachHang;

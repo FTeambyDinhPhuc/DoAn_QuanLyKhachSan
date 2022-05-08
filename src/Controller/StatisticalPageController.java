@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import org.apache.poi.ss.usermodel.CellType;
@@ -30,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.util.StringConverter;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DatePicker;
@@ -99,6 +101,7 @@ public class StatisticalPageController implements Initializable{
 	//Update Table Bill
 	private void UpdateTableBill()
 	{
+		
 		maHoaDonColumn.setCellValueFactory(new PropertyValueFactory<>("MaHoaDon"));
 		soPhongColumn.setCellValueFactory(new PropertyValueFactory<>("SoPhong"));
 		khachHangColumn.setCellValueFactory(new PropertyValueFactory<>("TenKhachHang"));
@@ -218,6 +221,7 @@ public class StatisticalPageController implements Initializable{
 				   cell.setCellValue("Thành Tiền");
 				   for(int i=0; i<billList.size(); i++)
 				    {
+					   
 				        sheet.autoSizeColumn(i);    
 			            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy"); 
 			            String strDateNhanPhong = dateFormat.format(billList.get(i).getThoiGianNhanPhong());

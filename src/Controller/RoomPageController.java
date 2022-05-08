@@ -288,6 +288,11 @@ public class RoomPageController implements Initializable {
 			List<Room> roomList = getData(); 
 			refresh(roomList);		
 			Clean();
+	    	btnBookRoom.setDisable(true);
+	    	btnService.setDisable(true);
+	    	btnHuy.setDisable(true);
+	    	btnNhanPhong.setDisable(true);
+	    	btnPayment.setDisable(true);
 		} catch (Exception e) {
 			showAlertPayFail();
 		}
@@ -302,21 +307,32 @@ public class RoomPageController implements Initializable {
 			return;
 		}
 		LocalDate localDateNhanPhong = dateNhanPhong.getValue();
+		LocalDate localDateTraPhong = dateTraPhong.getValue();
 		LocalDate dateNow =LocalDate.now();
 		if(localDateNhanPhong.isBefore(dateNow))
 		{
 			showAlertCheckInDateSmallerGetDate();
 			return;
 		}
+		if(localDateTraPhong.isBefore(localDateNhanPhong))
+		{
+			showAlertCheckOutSmallerCheckIn();
+			return;
+		}
+		bookroom = new BookRoom();
+		room = new Room();
+		Customers customers = new Customers();
+		LocalDate tgdp = dateNhanPhong.getValue();
+		Date thoiGianDatPhong = java.sql.Date.valueOf(tgdp);
+		LocalDate tgtp = dateTraPhong.getValue();
+		Date thoiGianTraPhong = java.sql.Date.valueOf(tgtp);
+		if(thoiGianTraPhong.getTime()-thoiGianDatPhong.getTime()==0)
+		{
+			showAlertCheckOutSmallerCheckIn();				
+			return;
+		}
 		try {
 			SetRoomDatPhong();
-			bookroom = new BookRoom();
-			room = new Room();
-			Customers customers = new Customers();
-			LocalDate tgdp = dateNhanPhong.getValue();
-			Date thoiGianDatPhong = java.sql.Date.valueOf(tgdp);
-			LocalDate tgtp = dateTraPhong.getValue();
-			Date thoiGianTraPhong = java.sql.Date.valueOf(tgtp);
 			int maKH = customers.LayMaKhachHang(cccdField.getText());
 			int mp= room.LayMaPhong(maPhong1);	
 			bookroom.ThemPhieuDatPhong(thoiGianDatPhong, thoiGianTraPhong, maKH, mp);
@@ -387,7 +403,7 @@ public class RoomPageController implements Initializable {
     }	
     @FXML
     void HuyDatPhong(ActionEvent event) {
-    	try {
+    	try {    		
     		Room r = new Room();
     		int mp1 = r.LayMaPhong(maPhong1);
         	BookRoom bookr1 = new BookRoom();
@@ -395,10 +411,14 @@ public class RoomPageController implements Initializable {
         	bookr1.SetDefaultBookRoom();
 	    	showAlertCancelBookRoom();
 	    	r.UpdateStatus(0, mp1);
-			List<Room> roomList = getData(); 
+			List<Room> roomList = getData(); 			
 			refresh(roomList);
         	Clean();
-			r.UpdateStatus(0, mp1);
+	    	btnBookRoom.setDisable(true);
+	    	btnService.setDisable(true);
+	    	btnHuy.setDisable(true);
+	    	btnNhanPhong.setDisable(true);
+	    	btnPayment.setDisable(true);
             
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -501,7 +521,7 @@ public class RoomPageController implements Initializable {
     }  
     private void SetButtonTruocDatPhong()
     {
-    	btnBookRoom.setDisable(false);
+    	btnBookRoom.setDisable(true);
     	btnService.setDisable(true);
     	btnHuy.setDisable(true);
     	btnNhanPhong.setDisable(true);
@@ -554,7 +574,14 @@ public class RoomPageController implements Initializable {
 		// Header Text: null
 		alert.setHeaderText(null);
 		alert.setContentText("Thanh toán thất bại!");
-
+		alert.showAndWait();
+	}
+	// Hiển thị Warning Alert cảnh báo khi ngày trả phòng nhỏ hơn ngày hiện tại
+	private void showAlertCheckOutSmallerCheckIn() {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Cảnh báo");
+		alert.setHeaderText(null);
+		alert.setContentText("Ngày trả phòng phải lớn hơn ngày nhận phòng");
 		alert.showAndWait();
 	}
 }

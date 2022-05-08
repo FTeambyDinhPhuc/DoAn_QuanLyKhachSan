@@ -1,6 +1,8 @@
 package Controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import Model.BookService;
@@ -52,36 +54,60 @@ public class ServiceScreenController implements Initializable {
     Room room;
     ObservableList<Service> serviceList = FXCollections.observableArrayList();	
     BookService bookService;   
-    
+    int soLuongDV=0;
     int maPhong;
     
     @FXML
     void Confirm(ActionEvent event) {
     	
     	float thanhTien = 0;
-    	int sl = 0;
+    	double sl = 0;
     	float gt = 0;
+    	int sl1=0;
+    	int check1=0;
 		room = new Room();
 		int mp;
+		 int error =0;
+		double tong=0;
 		bookService = new BookService();
     	ObservableList<Service> dataRows = tableServiceScreen.getItems();
-    	for(int i = 0; i < dataRows.size(); i++) { 		
+    	for(int i = 0; i < dataRows.size(); i++) { 
     		try {
-    			sl = Integer.parseInt(dataRows.get(i).getNhapSoLuong().getText());
+    			sl = Double.parseDouble(dataRows.get(i).getNhapSoLuong().getText());
+    			tong=tong+sl;
 			} catch (Exception e) {
-				sl = 0;
+				error++;
 			}
-			gt = dataRows.get(i).getGiaTien();
-			thanhTien += sl * gt;
-			thanhTienField.setText(String.format("%.0f", thanhTien)+ " VND");
-			mp = room.LayMaPhong(maPhong);
-			bookService.ThemPhieuSuDungDichVu(mp, dataRows.get(i).getMaDichVu(), sl);
+			int check =check_real_integer_number(tong);	
+			check1=check;
+    	} 
+    	if(check1==1 && error==0)
+    	{
+			for(int j = 0; j < dataRows.size(); j++) 
+			{ 
+				sl1=Integer.parseInt(dataRows.get(j).getNhapSoLuong().getText());
+				gt = dataRows.get(j).getGiaTien();
+				thanhTien += sl1 * gt;
+				thanhTienField.setText(String.format("%.0f", thanhTien)+ " VND");
+				mp = room.LayMaPhong(maPhong);
+				bookService.ThemPhieuSuDungDichVu(mp, dataRows.get(j).getMaDichVu(), sl1);
+				showAlertWithoutHeaderText();
+				stage = (Stage)((Node)event.getSource()).getScene().getWindow();			
+				stage.close();	
+			}	
     	}
-		showAlertWithoutHeaderText();
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();			
-		stage.close();
+    	else
+    	{
+        	showAlertQuantityIsAnInteger();
+    		return;	
+    	}
+	}
 
-    }
+	private static int check_real_integer_number(double n){
+	    int flag = 1;
+	    if (Math.ceil(n) != Math.floor(n)) flag = 0;
+	    return flag;
+	}
 	@FXML
 	 public void Close(ActionEvent event) {
 		 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -134,14 +160,20 @@ public class ServiceScreenController implements Initializable {
 		soLuongColumn.setCellValueFactory(new PropertyValueFactory<>("nhapSoLuong"));
 		tableServiceScreen.setItems(serviceList);	
 	}	
-	// Hiển thị Information Alert không có Header Text
+	// Hiển thị Information Alert Thêm dịch vụ thành công
 	private void showAlertWithoutHeaderText() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Thông báo!");
-		// Header Text: null
 		alert.setHeaderText(null);
 		alert.setContentText("Thêm dịch vụ thành công!");
-
+		alert.showAndWait();
+	}
+	// Hiển thị Information Alert số lượng là số nguyên
+	private void showAlertQuantityIsAnInteger() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Thông báo!");
+		alert.setHeaderText(null);
+		alert.setContentText("Số lượng phải là số nguyên!");
 		alert.showAndWait();
 	}
 }

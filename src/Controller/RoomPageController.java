@@ -434,6 +434,12 @@ public class RoomPageController implements Initializable {
         	Customers customers = new Customers();
         	KHList =customers.LayDS(cccdField.getText());
         	int count = KHList.size();
+        	if(count==0)
+        	{
+        		showAlertWarningCustomerIsNull();
+        		cccdField.clear();
+        		return;
+        	}
         	for(int i=0;i<count;i++)
         	{
         		Customers c = KHList.get(i);
@@ -582,6 +588,15 @@ public class RoomPageController implements Initializable {
 		alert.setTitle("Cảnh báo");
 		alert.setHeaderText(null);
 		alert.setContentText("Ngày trả phòng phải lớn hơn ngày nhận phòng");
+		alert.showAndWait();
+	}
+	// Hiển thị Warning Alert không có Header Text
+	private void showAlertWarningCustomerIsNull() {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Cảnh báo");
+		alert.setHeaderText(null);
+		alert.setContentText("Khách hàng không tồn tại!");
+
 		alert.showAndWait();
 	}
 }

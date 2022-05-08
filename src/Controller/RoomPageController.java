@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,6 +32,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.StringConverter;
 
 public class RoomPageController implements Initializable {
 	
@@ -64,6 +66,8 @@ public class RoomPageController implements Initializable {
     private Button btnHuy;
     @FXML
     private Button btnNhanPhong;
+    @FXML
+    private Label lbGiaTienPhong;
     Room room;
     BookRoom bookroom;
     Customers customers;
@@ -74,7 +78,33 @@ public class RoomPageController implements Initializable {
 	private String status = "Trống";
 	private String status2 = "Đã đặt phòng";
 	private String status3 = "Đã nhận phòng";
-	
+	private void ConverDate()
+	{
+	    // Converter
+	    StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
+	        DateTimeFormatter dateFormatter =
+	                  DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	        public String toString(LocalDate date) {
+	            if (date != null) {
+	                return dateFormatter.format(date);
+	            } else {
+	                return "";
+	            }
+	        }
+	        public LocalDate fromString(String string) {
+	            if (string != null && !string.isEmpty()) {
+	                return LocalDate.parse(string, dateFormatter);
+	            } else {
+	                return null;
+	            }
+	        }
+	    };   
+	    dateNhanPhong.setConverter(converter);
+	    dateNhanPhong.setPromptText("dd-MM-yyyy");
+	    dateTraPhong.setConverter(converter);
+	    dateTraPhong.setPromptText("dd-MM-yyyy");
+	}
+
     private List<Room> getData()
     {
     	List<Room> roomList = new ArrayList<>();
@@ -153,6 +183,7 @@ public class RoomPageController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		SetButtonTruocDatPhong();
 		txtMaPhong.setText("Phòng");
+		ConverDate();
 		refresh(getData());
 	}
 	
@@ -235,15 +266,32 @@ public class RoomPageController implements Initializable {
     }
 	@FXML
 	public void Payment(ActionEvent event) throws IOException {	
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/BillScreen.fxml"));
-		Stage stage = new Stage(StageStyle.UNDECORATED);
-		stage.setScene(new Scene(loader.load()));		
-		BillScreenController controller1 = loader.getController();
-		controller1.setMaPhong(maPhong1);
-		stage.showAndWait();
-		List<Room> roomList = getData(); 
-		refresh(roomList);	
-		
+		try {
+			if(cccdField.getText().isEmpty() || tenKhachHangField.getText().isEmpty()||sDTField.getText().isEmpty()||dateNhanPhong.getValue()==null||dateTraPhong.getValue()==null)
+			{
+				showAlertWarningSetText();
+				return;
+			}
+			LocalDate localDateNhanPhong = dateNhanPhong.getValue();
+			LocalDate dateNow =LocalDate.now();
+			if(localDateNhanPhong.isBefore(dateNow))
+			{
+				showAlertCheckInDateSmallerGetDate();
+				return;
+			}
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/BillScreen.fxml"));
+			Stage stage = new Stage(StageStyle.UNDECORATED);
+			stage.setScene(new Scene(loader.load()));		
+			BillScreenController controller1 = loader.getController();
+			controller1.setMaPhong(maPhong1);
+			stage.showAndWait();
+			List<Room> roomList = getData(); 
+			refresh(roomList);		
+			Clean();
+		} catch (Exception e) {
+			showAlertPayFail();
+		}
+
 	}
 	
 	@FXML
@@ -251,6 +299,13 @@ public class RoomPageController implements Initializable {
 		if(cccdField.getText().isEmpty() || tenKhachHangField.getText().isEmpty()||sDTField.getText().isEmpty()||dateNhanPhong.getValue()==null||dateTraPhong.getValue()==null)
 		{
 			showAlertWarningSetText();
+			return;
+		}
+		LocalDate localDateNhanPhong = dateNhanPhong.getValue();
+		LocalDate dateNow =LocalDate.now();
+		if(localDateNhanPhong.isBefore(dateNow))
+		{
+			showAlertCheckInDateSmallerGetDate();
 			return;
 		}
 		try {
@@ -284,6 +339,7 @@ public class RoomPageController implements Initializable {
 		sDTField.setText("");
 		dateNhanPhong.setValue(null);
 		dateTraPhong.setValue(null);
+		lbGiaTienPhong.setText("0 VND/Ngày");
 	}
  
     @FXML
@@ -302,10 +358,11 @@ public class RoomPageController implements Initializable {
 		             int result = Integer.parseInt(asd.getText());
 		             maPhong = result;
 		             maPhong1=maPhong;
+		             getDSHK();
 		        } catch (NumberFormatException e) {
-		        	System.out.println(e.toString());
+		        	
 		        }
-		       	getDSHK();
+		       	
 			} else
 			{
     	    	btnBookRoom.setDisable(true);
@@ -339,8 +396,9 @@ public class RoomPageController implements Initializable {
 	    	showAlertCancelBookRoom();
 	    	r.UpdateStatus(0, mp1);
 			List<Room> roomList = getData(); 
-			refresh(roomList);	
+			refresh(roomList);
         	Clean();
+			r.UpdateStatus(0, mp1);
             
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -377,11 +435,14 @@ public class RoomPageController implements Initializable {
     	String cccd2;
     	Date thoiGianNhanPhong;
     	Date thoiGianTraPhong;
+    	float giaTienPhong =0;
     	try {
         	List<Customers> KHList1 = new ArrayList<>();
             Customers customers = new Customers();
             Room room = new Room();
             int soP= room.LayMaPhong(maPhong1);
+            giaTienPhong =room.LayGiaTienPhong(soP);
+            lbGiaTienPhong.setText(Float.toString(giaTienPhong)+"VND/Ngày");
             KHList1= customers.LayThongTinKhachHang(soP);
             for(int i=0;i<KHList1.size();i++)
             {
@@ -476,6 +537,24 @@ public class RoomPageController implements Initializable {
 		alert.setTitle("Thông báo");
 		alert.setHeaderText(null);
 		alert.setContentText("Nhận phòng thành công!");
+		alert.showAndWait();
+	}
+	// Hiển thị Warning Alert cảnh báo khi ngày nhận phòng bé hơn ngày hiện tại
+	private void showAlertCheckInDateSmallerGetDate() {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Cảnh báo");
+		alert.setHeaderText(null);
+		alert.setContentText("Ngày nhận phòng bé hơn ngày hiện tại!");
+		alert.showAndWait();
+	}
+	// Hiển thị Information Alert thanh toán thất bại
+	private void showAlertPayFail() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Thông báo");
+		// Header Text: null
+		alert.setHeaderText(null);
+		alert.setContentText("Thanh toán thất bại!");
+
 		alert.showAndWait();
 	}
 }

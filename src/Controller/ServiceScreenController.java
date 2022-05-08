@@ -92,7 +92,6 @@ public class ServiceScreenController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Platform.runLater(() -> {
 			soPhongTextField.setText(Integer.toString(maPhong));			
-//			System.out.println(maPhong);
 			service = new Service();
 			serviceList = service.getDataService1();	
 			UpdateTable();

@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.util.StringConverter;
 
 import application.ConnectSql;
 
@@ -69,8 +70,6 @@ public class BookRoom {
 	public void setMaPhong(int maPhong) {
 		MaPhong = maPhong;
 	}
-	
-
 	public boolean ThemPhieuDatPhong(Date thoiGianDatPhong, Date thoiGianTraPhong, int maKhachHang, int maPhong) 
 	{
 			try {

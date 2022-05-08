@@ -13,11 +13,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -76,6 +78,7 @@ public class BillScreenController implements Initializable{
     float thanhTien=0;
     float tienPhong =0;
     float tongTien =0;
+    long day=0;
 	ObservableList<BookService> DSSList = FXCollections.observableArrayList();
 	ObservableList<BookService> SLGTList = FXCollections.observableArrayList();
 	// Event Listener on Button[#btnConfirm].onAction
@@ -127,6 +130,12 @@ public class BillScreenController implements Initializable{
 	            	LocalDate tgtp = thoiGianTraPhong.toLocalDate();
 	            	dateNhanPhong.setValue(tgnp);
 	            	dateTraPhong.setValue(tgtp);
+	                Date time1 = java.sql.Date.valueOf(tgnp);	
+	                Date time2 = java.sql.Date.valueOf(tgtp);	
+	            	long getDiff = time2.getTime()-time1.getTime();
+	            	long getDaysDiff = getDiff / (24 * 60 * 60 * 1000);
+	            	day=getDaysDiff;
+	            	
 	            }
 	            BookService bookService = new BookService();
 	            SLGTList = bookService.LaySoLuongVaGiaTien(soP);
@@ -134,10 +143,10 @@ public class BillScreenController implements Initializable{
 	            {
 	            	BookService bsv1 = SLGTList.get(i);
 	            	thanhTien = thanhTien + bsv1.getSoLuong()*bsv1.getGiaTien();
-	            }
+	            }        
 	            Room r = new Room();
 	            tienPhong=r.LayGiaTienPhong(soP);
-	            tongTien = thanhTien+tienPhong;
+	            tongTien = thanhTien+tienPhong*day;
 	            lbThanhTien.setText(String.format("%.0f", tongTien)+" VND");
 	    	}
 	            catch (Exception e) {
@@ -152,6 +161,7 @@ public class BillScreenController implements Initializable{
 			GetData();
 			bookService = new BookService();
 			DSSList = bookService.GetDataService(soP1);
+			ConverDate();
 			refreshTable();
 			
 
@@ -234,6 +244,32 @@ public class BillScreenController implements Initializable{
             catch (Exception e) {
     			// TODO: handle exception
             }		
+	}
+	private void ConverDate()
+	{
+	    // Converter
+	    StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
+	        DateTimeFormatter dateFormatter =
+	                  DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	        public String toString(LocalDate date) {
+	            if (date != null) {
+	                return dateFormatter.format(date);
+	            } else {
+	                return "";
+	            }
+	        }
+	        public LocalDate fromString(String string) {
+	            if (string != null && !string.isEmpty()) {
+	                return LocalDate.parse(string, dateFormatter);
+	            } else {
+	                return null;
+	            }
+	        }
+	    };   
+	    dateNhanPhong.setConverter(converter);
+	    dateNhanPhong.setPromptText("dd-MM-yyyy");
+	    dateTraPhong.setConverter(converter);
+	    dateTraPhong.setPromptText("dd-MM-yyyy");
 	}
 	// Hiển thị Information Alert không có Header Text
 	private void showAlertInformation() {

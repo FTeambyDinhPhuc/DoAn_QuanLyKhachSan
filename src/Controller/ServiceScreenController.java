@@ -91,10 +91,11 @@ public class ServiceScreenController implements Initializable {
 				thanhTienField.setText(String.format("%.0f", thanhTien)+ " VND");
 				mp = room.LayMaPhong(maPhong);
 				bookService.ThemPhieuSuDungDichVu(mp, dataRows.get(j).getMaDichVu(), sl1);
-				showAlertWithoutHeaderText();
-				stage = (Stage)((Node)event.getSource()).getScene().getWindow();			
-				stage.close();	
-			}	
+
+			}
+			showAlertWithoutHeaderText();
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();			
+			stage.close();	
     	}
     	else
     	{

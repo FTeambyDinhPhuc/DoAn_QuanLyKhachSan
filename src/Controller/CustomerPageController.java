@@ -63,6 +63,7 @@ public class CustomerPageController implements Initializable{
 		String soDienThoai = txtSDT.getText();
 		String cCCD = txtCCCD.getText();
 		String btnName = btnEditing.getText();
+
 		if(!IsNumber(cCCD))
 		{
 			WarningAlerKTCCCD();
@@ -76,8 +77,9 @@ public class CustomerPageController implements Initializable{
 		if(txtCCCD.getText()==""||txtTenKhachHang.getText()==""||txtSDT.getText()=="")
 		{
 			WarningAlertInput();
+			return;
 		}
-		else 
+		if(cCCD.length()==12 && soDienThoai.length()==10)
 		{
 			if(btnName.compareTo("Thêm") == 0){
 				// thêm
@@ -92,6 +94,11 @@ public class CustomerPageController implements Initializable{
 				Edit();		
 				
 			}
+		}
+		else 
+		{
+			WarningAlerFormatInput();
+			return;
 		}
 		refreshTable();
 	}
@@ -281,6 +288,15 @@ public class CustomerPageController implements Initializable{
 		alert.setTitle("Thông báo");
 		alert.setHeaderText(null);
 		alert.setContentText("Xóa khách hàng thành công!");
+		alert.showAndWait();
+	}
+	//Warning Alert Kiểm tra số điện thoại
+	private void WarningAlerFormatInput()
+	{
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Cảnh báo!");
+		alert.setHeaderText(null);
+		alert.setContentText("Vui lòng nhập đúng định dạng số điện thoại hoặc CCCD!");
 		alert.showAndWait();
 	}
 }

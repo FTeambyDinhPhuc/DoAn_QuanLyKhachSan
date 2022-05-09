@@ -236,6 +236,7 @@ public class CustomerPageController implements Initializable{
 		Customers cus1 = new Customers();
 		cus1.Edit(tkh, cccd, sdt,mkh);
 		Clean();
+		btnEditing.setText("Thêm");
 		refreshTable();
 		showAlertEditInformationSuccess();
 

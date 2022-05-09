@@ -172,6 +172,7 @@ public class RoomManagePageController implements Initializable {
 				Room room1 = new Room();
 				room1.Edit(tp, sg, mlp, gtp, mp);
 				Clean();
+				btnEditing.setText("Thêm");
 				showAlertEditRoomSuccess();
 				refreshTable();
 			}

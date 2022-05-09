@@ -260,7 +260,7 @@ public class StatisticalPageController implements Initializable{
     	       showAlertGetExcel();
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println(e);
+			showAlertGetExcelError();
 		}
     }
 	// Hiển thị Information Alert không có Header Text
@@ -269,7 +269,14 @@ public class StatisticalPageController implements Initializable{
 		alert.setTitle("Thông báo");
 		alert.setHeaderText(null);
 		alert.setContentText("Xuất Excel thành công!");
-
+		alert.showAndWait();
+	}
+	// Hiển thị Information Alert không có Header Text
+	private void showAlertGetExcelError() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Thông báo");
+		alert.setHeaderText(null);
+		alert.setContentText("Xuất Excel thất bại!");
 		alert.showAndWait();
 	}
 

@@ -81,17 +81,21 @@ public class ServiceScreenController implements Initializable {
 			int check =check_real_integer_number(tong);	
 			check1=check;
     	} 
-    	if(check1==1 && error==0)
+    	if(check1==1)
     	{
 			for(int j = 0; j < dataRows.size(); j++) 
 			{ 
-				sl1=Integer.parseInt(dataRows.get(j).getNhapSoLuong().getText());
-				gt = dataRows.get(j).getGiaTien();
-				thanhTien += sl1 * gt;
-				thanhTienField.setText(String.format("%.0f", thanhTien)+ " VND");
-				mp = room.LayMaPhong(maPhong);
-				bookService.ThemPhieuSuDungDichVu(mp, dataRows.get(j).getMaDichVu(), sl1);
-
+				try {
+					sl = Double.parseDouble(dataRows.get(j).getNhapSoLuong().getText());
+					gt = dataRows.get(j).getGiaTien();
+					thanhTien += sl * gt;
+					thanhTienField.setText(String.format("%.0f", thanhTien)+ " VND");
+					mp = room.LayMaPhong(maPhong);
+					sl1 =(int)sl;
+					bookService.ThemPhieuSuDungDichVu(mp, dataRows.get(j).getMaDichVu(), sl1);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 			}
 			showAlertWithoutHeaderText();
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();			
